@@ -1,0 +1,13 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+<!-- <Context crossContext="true"> -->
+<!-- 	<Resource name="jdbc/epsi" auth="Container" -->
+<!-- 		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" type="javax.sql.DataSource" -->
+<!-- 		username="root" password="" driverClassName="com.mysql.jdbc.Driver" -->
+<!-- 		url="jdbc:mysql://localhost/pdf?useUnicode=true&amp;characterEncoding=UTF-8&amp;useServerPrepStmts=false" -->
+<!-- 		defaultAutoCommit="true" accessToUnderlyingConnectionAllowed="true" -->
+<!-- 		maxActive="200" maxIdle="30" maxWait="10000" initialSize="10" -->
+<!-- 		validationQuery="/* ping */" testWhileIdle="true" testOnBorrow="false" -->
+<!-- 		testOnReturn="false" timeBetweenEvictionRunsMillis="300000" -->
+<!-- 		minEvictableIdleTimeMillis="1800000" numTestsPerEvictionRun="5" /> -->
+<!-- </Context> -->
+
