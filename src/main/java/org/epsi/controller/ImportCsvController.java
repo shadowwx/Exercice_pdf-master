@@ -29,7 +29,7 @@ public class ImportCsvController {
 		if (pModel.get("importCsv") == null) {
 			pModel.addAttribute("importCsv", new CreationFromClient());
 		}
-		return "importCsv";
+		return "Csv";
 	}
 
 	@RequestMapping(value="/importCsv", method = RequestMethod.POST)
