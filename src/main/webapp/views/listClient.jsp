@@ -62,7 +62,12 @@
                         <td><c:out value="${client.billingPlace}"/></td>
                         <td><c:out value="${client.mail}"/></td>
                         <td><c:out value="${client.phone}"/></td>
-                    </tr>
+	                    <td>		                    
+		                    <a href="downloadPDF/${client.client_id}">
+		                        <spring:message code="facture.extract.libelle" />
+		                    </a>
+		                </td>
+	                 </tr>
                 </c:forEach>
             </tbody>
         </table>

@@ -9,6 +9,8 @@
         <class>org.epsi.entity.Client</class>
         <class>org.epsi.entity.Product</class>
         <class>org.epsi.entity.Request</class>
+        <class>org.epsi.entity.DetailsRequests</class>
+        <class>org.epsi.entity.Tva</class>
         <properties>
         	<property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>

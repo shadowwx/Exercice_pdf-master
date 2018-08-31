@@ -7,5 +7,6 @@ import org.epsi.entity.Request;
 
 public interface RequestService {
 	public List<Request> getRequests();
+	public Request getRequest(Long request_billNumber);
 }
 

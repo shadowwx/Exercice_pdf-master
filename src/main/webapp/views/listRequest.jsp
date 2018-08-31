@@ -48,18 +48,25 @@
             <thead>
                 <tr>
                     <th><spring:message code="colonne.request_billNumber"/></th>
-                    <th><spring:message code="colonne.totalPrice"/></th>
                     <th><spring:message code="colonne.dateCreation"/></th>
                     <th><spring:message code="colonne.confirmation"/></th>
+                    <th><spring:message code="colonne.action"/></th>           
                 </tr>
             </thead>
             <tbody>
-                <c:forEach items="${listRequest}" var="request">
+                <c:forEach items="${lRequest}" var="request">
                     <tr>
                         <td><c:out value="${request.request_billNumber}"/></td>
-                        <td><c:out value=""/></td>
                         <td><c:out value="${request.dateCreation}"/></td>
                         <td><c:out value="${request.confirmation}"/></td>
+                        <td>
+		                    <c:url value="/Facture-Pdf" var="url">
+		                        <c:param name="request_billNumber" value="${request.request_billNumber}"/>
+		                    </c:url>
+		                    <a href="${url}">
+		                        <spring:message code="pdf.extract.libelle" />
+		                    </a>
+		                </td>
                     </tr>
                 </c:forEach>
             </tbody>

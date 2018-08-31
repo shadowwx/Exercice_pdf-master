@@ -1,10 +1,18 @@
 package org.epsi.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +21,7 @@ public class Product {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "product_reference")
 	private Long product_reference;
 	
 	@Column(name = "name")
@@ -36,12 +45,23 @@ public class Product {
 	@Column(name = "commentary")
 	private String commentary;
 	
+	@OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tva_id", insertable=false, updatable=false, nullable=false)
+    private Tva tva;
+	
+	@OneToMany(cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER,
+			targetEntity = DetailsRequests.class,
+            mappedBy = "product")
+    private Set<DetailsRequests> detailsRequests = new HashSet<>();
+	
 	public Product() {
 		super();
 	}
 	
+	
 	public Product(Long product_reference, String name, String brand, String type, float weight, int numberStock,
-			float priceUnit, String commentary) {
+			float priceUnit, String commentary, Tva tva, Set<DetailsRequests> detailsRequests) {
 		super();
 		this.product_reference = product_reference;
 		this.name = name;
@@ -51,7 +71,11 @@ public class Product {
 		this.numberStock = numberStock;
 		this.priceUnit = priceUnit;
 		this.commentary = commentary;
+		this.tva = tva;
+		//this.detailsRequests = detailsRequests;
 	}
+
+
 	public Long getProduct_reference() {
 		return product_reference;
 	}
@@ -91,6 +115,11 @@ public class Product {
 	public float getPriceUnit() {
 		return priceUnit;
 	}
+	
+	public float getPriceUnitTTC(){
+		return getPriceUnit()*((getTva().getTaux()/100)+1);
+	}
+	
 	public void setPriceUnit(float priceUnit) {
 		this.priceUnit = priceUnit;
 	}
@@ -99,6 +128,33 @@ public class Product {
 	}
 	public void setCommentary(String commentary) {
 		this.commentary = commentary;
+	}
+
+	public Tva getTva() {
+		return tva;
+	}
+
+	public void setTva(Tva tva) {
+		this.tva = tva;
+	}
+
+	public Set<DetailsRequests> getDetailsRequests() {
+		return detailsRequests;
+	}
+
+	public void setDetailsRequests(Set<DetailsRequests> detailsRequests) {
+		this.detailsRequests = detailsRequests;
+	}
+	
+	public String getPriceUnitWithDevise() {
+		return getPriceUnit() + "€";
+	}
+	
+	@Override
+	public String toString() {
+		return "Product [product_reference=" + product_reference + ", name=" + name + ", brand=" + brand + ", type="
+				+ type + ", weight=" + weight + ", numberStock=" + numberStock + ", priceUnit=" + priceUnit
+				+ ", commentary=" + commentary + ", tva=" + tva + "]";
 	}
 	
 }

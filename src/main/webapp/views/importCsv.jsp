@@ -6,33 +6,15 @@
 <html>
     <head>
         <title><spring:message code="titre.csv"/></title>
-		<script type="text/javascript">
-	            function verifier()
-	            {
-	                var typemime=document.getElementById('csv').value.split('.');
-	                if(typemime.length!=0)
-	                    {
-	                        if(typemime[typemime.length-1].toLowerCase()!='csv')
-	                            {alert('Fichier csv Invalide')}
-	                            else
-	                                {
-	                                    document.forms[0].submit();
-	                                }
-	                    }
-	            }
-	    </script>
 	</head>
 	<body>
-	<form:form method="post" enctype="multipart/form-data" modelAttribute="importCsv" action="importCsv ">
+	<form:form method="post" enctype="multipart/form-data" action="uploadCsv">
 		<fieldset>
-	        <legend>Envoi de fichier</legend>
-	        
-			<label for="fichier">Emplacement du fichier <span class="requis">*</span></label>
-			<input type="file" name="fichier" id="fichier"/><br />
-<%-- 			<span class="succes"><c:out value="${fichier}" /></span> --%>
-			<br />
-			
-			<input type="submit" />
+	        <legend>Choisir un fichier Client</legend>	        
+			<label>Votre fichier doit être un CSV de type client :</label>
+			<input type="file" name="file" />
+			<br /><br />
+			<button type="submit" value="upload">Envoyer</button>
 			<br />
 		</fieldset>
 	</form:form>

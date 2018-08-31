@@ -19,4 +19,26 @@ public class RequestServiceImpl implements RequestService {
 	public List<Request> getRequests() {
 		return requestDao.getRequests();
 	}
+	
+	@Override
+	public Request getRequest(Long request_billNumber) {		
+		Request lRequest = null;
+		 List<Request> rlist = requestDao.getRequests();
+	        
+	        //pour chaque client, verifie ID
+	        //SI id = parametre -> lCLient = ce client
+	        		 
+	        //TODO regarder la fonctionnalité stream de java 8
+
+	        for(Request requestCourant : rlist) {
+	        	//traitementt
+	        	if(requestCourant.getRequest_billNumber().equals(request_billNumber)) {
+	        		lRequest = requestCourant;
+	        		break;
+	        	}
+	        	 
+	        }
+	        //retourne ce client 
+	        return lRequest;
+		}
 }

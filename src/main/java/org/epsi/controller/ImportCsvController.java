@@ -1,48 +1,42 @@
 package org.epsi.controller;
 
+import java.io.InputStream;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.epsi.entity.Client;
-import org.epsi.entity.CreationFromClient;
 import org.epsi.service.ClientCsvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-@RequestMapping(value="/csv")
 public class ImportCsvController {
 
 	@Autowired
-	private ClientCsvService clientCsvService;
-
-	@RequestMapping(method = RequestMethod.GET)
+	private ClientCsvService upload;
+	
+	@RequestMapping(value="/csv", method = RequestMethod.GET)
 	public String display(ModelMap pModel) {
-		final List<Client> lListClient = clientCsvService.getClients();
-		pModel.addAttribute("listClient", lListClient);
-		if (pModel.get("importCsv") == null) {
-			pModel.addAttribute("importCsv", new CreationFromClient());
-		}
-		return "Csv";
+		return "importCsv";
 	}
 
-	@RequestMapping(value="/importCsv", method = RequestMethod.POST)
-	public String importCsv(@Valid @ModelAttribute(value="importCsv") final CreationFromClient importCsv, 
-			final BindingResult pBindingResult, final ModelMap pModel) {
-
-		if (!pBindingResult.hasErrors()) {       
-			Client client = clientCsvService.readCsv(importCsv);
-			if(client == null) {
-				System.out.println("Une erreur sur le fichier CSV est présent");
-			}
-			clientCsvService.persistImportClient(client);
+	@RequestMapping(value="/uploadCsv", method = RequestMethod.POST)
+	public String importCsv(@Valid @ModelAttribute(value="uploadCsv") @RequestParam MultipartFile file) {		
+		try {
+		InputStream tmp = file.getInputStream();
+		List<Client> client = upload.readCsv(tmp);
+		upload.persistImportClient(client);
+		return "redirect:client";
+		} catch(Exception e) {
+			e.printStackTrace();
+			return "errorCsv";
 		}
-		return display(pModel);
 	}
 }

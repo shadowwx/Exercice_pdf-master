@@ -1,10 +1,16 @@
 package org.epsi.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,6 +36,12 @@ public class Client {
 	
 	@Column(name = "phone")
 	private String phone;
+		
+	@OneToMany(cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER,
+			targetEntity = Request.class,
+            mappedBy = "client")
+    private Set<Request> factures = new HashSet<>();
 
 	public Long getClient_id() {
 		return client_id;
@@ -68,6 +80,10 @@ public class Client {
 		this.phone = phone;
 	}
 	
+	public Set<Request> getFactures() {
+		return factures;
+	}
+	
 	public Client() {
 		
 	}
@@ -80,6 +96,14 @@ public class Client {
 		this.mail = mail;
 		this.phone = phone;
 	}
+	@Override
+	public String toString() {
+		return "Client [client_id=" + client_id + ", name=" + name + ", firstName=" + firstName + ", billingPlace="
+				+ billingPlace + ", mail=" + mail + ", phone=" + phone + ", factures=" + factures + "]";
+	}
+	
+	
+	
 	
 // Mise à jour pour "modification" depuis l'application	
 	

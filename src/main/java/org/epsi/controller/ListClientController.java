@@ -12,7 +12,7 @@ import org.epsi.entity.Client;
 import org.epsi.service.ClientService;
 
 @Controller
-@RequestMapping(value="/client")
+@RequestMapping("/client")
 public class ListClientController {
 	
     @Autowired
