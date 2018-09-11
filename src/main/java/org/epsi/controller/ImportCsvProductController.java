@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.epsi.entity.Client;
-import org.epsi.service.ClientCsvService;
+import org.epsi.entity.Product;
+import org.epsi.service.ProductCsvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,23 +17,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class ImportCsvController {
+public class ImportCsvProductController {
 
 	@Autowired
-	private ClientCsvService upload;
+	private ProductCsvService productUpload;
 	
-	@RequestMapping(value="/csv", method = RequestMethod.GET)
-	public String display(ModelMap pModel) {
-		return "importCsv";
+	@RequestMapping(value="/product-csv", method = RequestMethod.GET)
+	public String displayProduct(ModelMap pModel) {
+		return "importCsvProduct";
 	}
 
-	@RequestMapping(value="/uploadCsv", method = RequestMethod.POST)
-	public String importCsv(@Valid @ModelAttribute(value="uploadCsv") @RequestParam MultipartFile file) {		
+	@RequestMapping(value="/uploadCsvProduct", method = RequestMethod.POST)
+	public String importCsvProduct(@Valid @ModelAttribute(value="uploadCsvProduct") @RequestParam MultipartFile file) {		
 		try {
 		InputStream tmp = file.getInputStream();
-		List<Client> client = upload.readCsv(tmp);
-		upload.persistImportClient(client);
-		return "redirect:client";
+		List<Product> product = productUpload.readCsvProduct(tmp);
+		productUpload.persistImportProduct(product);
+		return "redirect:product";
 		} catch(Exception e) {
 			e.printStackTrace();
 			return "errorCsv";

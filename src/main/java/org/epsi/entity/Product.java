@@ -46,7 +46,7 @@ public class Product {
 	private String commentary;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "tva_id", insertable=false, updatable=false, nullable=false)
+    @JoinColumn(name = "tva_id", nullable=false)
     private Tva tva;
 	
 	@OneToMany(cascade = CascadeType.ALL,
@@ -59,7 +59,19 @@ public class Product {
 		super();
 	}
 	
-	
+	public Product(String name, String brand, String type, float weight, int numberStock,
+			float priceUnit, String commentary, Tva tva) {
+		super();
+		this.name = name;
+		this.brand = brand;
+		this.type = type;
+		this.weight = weight;
+		this.numberStock = numberStock;
+		this.priceUnit = priceUnit;
+		this.commentary = commentary;
+		this.tva = tva;
+	}
+
 	public Product(Long product_reference, String name, String brand, String type, float weight, int numberStock,
 			float priceUnit, String commentary, Tva tva, Set<DetailsRequests> detailsRequests) {
 		super();
@@ -72,9 +84,8 @@ public class Product {
 		this.priceUnit = priceUnit;
 		this.commentary = commentary;
 		this.tva = tva;
-		//this.detailsRequests = detailsRequests;
+		this.detailsRequests = detailsRequests;
 	}
-
 
 	public Long getProduct_reference() {
 		return product_reference;
@@ -147,7 +158,7 @@ public class Product {
 	}
 	
 	public String getPriceUnitWithDevise() {
-		return getPriceUnit() + "€";
+		return getPriceUnit() + "ï¿½";
 	}
 	
 	@Override

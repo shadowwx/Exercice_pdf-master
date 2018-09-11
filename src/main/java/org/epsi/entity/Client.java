@@ -84,8 +84,7 @@ public class Client {
 		return factures;
 	}
 	
-	public Client() {
-		
+	public Client() {	
 	}
 
 	public Client(String name, String firstName, String billingPlace, String mail, String phone) {

@@ -8,7 +8,7 @@
         <title><spring:message code="titre.csv"/></title>
 	</head>
 	<body>
-	<form:form method="post" enctype="multipart/form-data" action="uploadCsv">
+	<form:form method="post" enctype="multipart/form-data" action="uploadCsvClient">
 		<fieldset>
 	        <legend>Choisir un fichier Client</legend>	        
 			<label>Votre fichier doit être un CSV de type client :</label>

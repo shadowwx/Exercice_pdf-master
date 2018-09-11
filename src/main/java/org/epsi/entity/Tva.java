@@ -75,6 +75,11 @@ public class Tva {
 		this.nom = nom;
 		this.products = products;
 	}
+	
+	public Tva(Long tva_id) {
+		super();
+		this.tva_id = tva_id;
+	}
 
 	public Tva() {
 		super();

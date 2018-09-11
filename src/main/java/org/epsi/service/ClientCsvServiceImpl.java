@@ -30,14 +30,14 @@ public class ClientCsvServiceImpl implements ClientCsvService {
     String cvsSplit = ";";
 	
 	@Transactional
-	public List<Client> readCsv(InputStream file) {
+	public List<Client> readCsvClient(InputStream file) {
 
     	br = new BufferedReader(new InputStreamReader(file));
     	List<Client> clientList = new ArrayList<Client>();
-        // Cette boucle permet de séparé chaque ligne et de boucler jusqu'a qu'il n'y en est plus.
+        // Cette boucle permet de sï¿½parï¿½ chaque ligne et de boucler jusqu'a qu'il n'y en est plus.
 			try {
 				while ((line = br.readLine()) != null) {
-				    // Permet de séparé les occurences
+				    // Permet de sï¿½parï¿½ les occurences
 				    String[] splitClient= line.split(cvsSplit);
 				    Client client = new Client(splitClient[0], splitClient[1], splitClient[2], splitClient[3], splitClient[4]);
 				    clientList.add(client);
