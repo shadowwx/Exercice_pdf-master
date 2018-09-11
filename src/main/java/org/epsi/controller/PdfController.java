@@ -93,16 +93,16 @@ public class PdfController {
 	    File myFile = new File(filename);
 	    FileOutputStream fos;
 	    byte[] out = new byte[]{};
-	    //Création du document
+	    //Crï¿½ation du document
 	    Document document = new Document();
-	    //Récupération du DetailsRequest
+	    //Rï¿½cupï¿½ration du DetailsRequest
 	    
 	    
 	    
 		try {
 			fos = new FileOutputStream(myFile);		
 
-			//Appel à la méthode d'écriture dans le PDF
+			//Appel ï¿½ la mï¿½thode d'ï¿½criture dans le PDF
 		    writeInPdf(document, fos, request);
 		    out = Files.readAllBytes(myFile.toPath());
 		
@@ -125,9 +125,9 @@ public class PdfController {
 	    
 	    //addPdfHeader(document,client); Pour Partitionner le contenue
 	    document.add(new Paragraph("Nom : " + client.getName(), font));
-	    document.add(new Paragraph("Prénom : " + client.getFirstName(), font));
+	    document.add(new Paragraph("PrÃ©nom : " + client.getFirstName(), font));
 	    
-	    //Image à placer
+	    //Image ï¿½ placer
 	    URL url = getClass().getClassLoader().getResource("testImage.png");
 		if(null != url) {		
 		    System.out.println(url.toString());
@@ -135,7 +135,7 @@ public class PdfController {
 		    img.scaleToFit(100, 100);;
 		    document.add(img);
 		} else {
-			System.out.println("url is null");
+			System.out.println("l'url est null");
 		}
 	    
 	    document.add(new Paragraph("Date de Commande : " + request.getDateCreation(), font));
@@ -158,7 +158,7 @@ public class PdfController {
 	    
 	    //request.getTotalTTC
 	    
-	    //Mise en place de la méthode en cas de condition null
+	    //Mise en place de la mï¿½thode en cas de condition null
 	    document.add(new Paragraph("Lieu de livraison : " + request.renderDeliveryPlace(), font));
 	    
 	    //Mise en place d'une condition ternaire en cas de condition null
@@ -166,9 +166,9 @@ public class PdfController {
 	    
 	    document.add(new Paragraph("Lieu de Facturation : " + client.getBillingPlace(), font));
 	    
-	    document.add(new Paragraph("Total Hors-Taxe : " + request.getTotalHT() + "€", font));
+	    document.add(new Paragraph("Total Hors-Taxe : " + request.getTotalHT() + "ï¿½", font));
 	    
-	    document.add(new Paragraph("Total TTC : " + request.getTotalTTC() + "€", font));
+	    document.add(new Paragraph("Total TTC : " + request.getTotalTTC() + "ï¿½", font));
 	    
 	    document.close();	
 	    
@@ -177,7 +177,7 @@ public class PdfController {
 	}
 	
 	private void addTableHeader(PdfPTable table) {
-	    Stream.of("Produit", "Quantité", "Prix /u", "TVA")
+	    Stream.of("Produit", "Quantitï¿½", "Prix /u", "TVA")
 	      .forEach(columnTitle -> {
 	        PdfPCell header = new PdfPCell();
 	        header.setBackgroundColor(BaseColor.LIGHT_GRAY);
