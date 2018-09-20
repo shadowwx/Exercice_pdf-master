@@ -22,6 +22,7 @@ public class CreateListClientController {
     @Autowired
     private ClientService service;
     
+    //Affiche la page avec la liste des clients et un formulaire pour créer un nouveau client
     @RequestMapping(value="/displayCreationClient", method = RequestMethod.GET)
     public String display(final ModelMap pModel) {
         final List<Client> lListClient = service.getClients();
@@ -32,6 +33,7 @@ public class CreateListClientController {
         return "creationClient";
     }
     
+    //Permet de créer un client et renvoi sur la page de création de client avec la liste des clients actuelle
     @RequestMapping(value="/creationClient", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute(value="creationClient") final CreationFromClient creation, 
             final BindingResult pBindingResult, final ModelMap pModel) {

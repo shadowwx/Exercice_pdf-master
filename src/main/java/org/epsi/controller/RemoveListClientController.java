@@ -16,7 +16,8 @@ public class RemoveListClientController {
 
 	@Autowired
     private ClientService service;
-
+	
+	//Affiche la liste des clients à supprimer
     @RequestMapping(value="/displayRemoveClient", method = RequestMethod.GET)
     public String display(final ModelMap pModel) {
         final List<Client> lListClient = service.getClients();
@@ -24,6 +25,7 @@ public class RemoveListClientController {
         return "removeClient";
     }
 
+    //Traitement qui supprime les clients
     @RequestMapping(value="/removeClient", method = RequestMethod.GET)
     public String remove(@RequestParam(value="client_id") final Long client_id, final ModelMap pModel) {
     	service.removeClient(client_id);  

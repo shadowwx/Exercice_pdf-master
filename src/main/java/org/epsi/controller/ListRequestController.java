@@ -16,7 +16,8 @@ public class ListRequestController {
 	
     @Autowired
     private RequestService service;
-
+    
+    //Affiche la liste des Commandes renommer en request dans le code et en BDD
     @RequestMapping(method = RequestMethod.GET)
     public String display(ModelMap pModel) {
         final List<Request> lListRequest = service.getRequests();

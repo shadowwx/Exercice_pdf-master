@@ -9,7 +9,9 @@
     <body>
     <h1>Projet PDF</h1>
         <p>Bonjour et bienvenue sur le projet PDF de Florian.</p>
-        <p>Pour commencer authentifiez-vous svp.</p>
+        <p>Si vous désirez vous servir de l'application, cliquez sur le bouton !</p>
+        <p><c:url value="/menu" var="url" /><a href="${url}"><img alt="Default_image" src="<c:url value="/resources/images/img_api.png" />" style="width: 200px;" ></a></p>
+<!--         <p>Pour commencer authentifiez-vous svp.</p>
 		<form method="post" action="traitement.php">
 			<p>
 		       <label for="user">Utilisateur:</label>
@@ -19,6 +21,6 @@
 		       <label for="password">Mot de passe :</label>
 		       <input type="password" name="password" id="password" />
 			</p>
-		</form>
+		</form> -->
     </body>
 </html>

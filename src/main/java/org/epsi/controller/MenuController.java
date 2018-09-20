@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/menu")
 public class MenuController {
 	
+	//Affiche un menu avec le choix de la liste des CLients/Produits/Commandes, ainsi que le traitement CSV
     @RequestMapping(method = RequestMethod.GET)
     public String displayMenu(final ModelMap pModel) {
         return "menu";

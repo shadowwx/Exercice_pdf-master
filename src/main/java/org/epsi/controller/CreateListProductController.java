@@ -22,6 +22,7 @@ public class CreateListProductController {
     @Autowired
     private ProductService service;
     
+    //Affiche la page avec la liste des produits et un formulaire pour créer un nouveau produit
     @RequestMapping(value="/displayCreationProduct", method = RequestMethod.GET)
     public String display(final ModelMap pModel) {
         final List<Product> lListProduct = service.getProducts();
@@ -32,6 +33,7 @@ public class CreateListProductController {
         return "creationProduct";
     }
     
+    //Permet de créer un produit et renvoi sur la page de création de produit avec la liste des produits actuelle
     @RequestMapping(value="/creationProduct", method = RequestMethod.POST)
     public String create(@Valid @ModelAttribute(value="creationProduct") final CreationFromProduct creation, 
             final BindingResult pBindingResult, final ModelMap pModel) {

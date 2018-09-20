@@ -46,6 +46,8 @@ public class Request {
             mappedBy = "request")
     private Set<DetailsRequests> detailsRequests = new HashSet<>();
     
+    
+    
 	public Long getRequest_billNumber() {
 		return request_billNumber;
 	}

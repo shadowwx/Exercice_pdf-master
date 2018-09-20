@@ -19,6 +19,7 @@ import javax.persistence.Table;
 @Table(name="products")
 public class Product {
 
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "product_reference")
@@ -156,10 +157,10 @@ public class Product {
 	public void setDetailsRequests(Set<DetailsRequests> detailsRequests) {
 		this.detailsRequests = detailsRequests;
 	}
-	
-	public String getPriceUnitWithDevise() {
-		return getPriceUnit() + "�";
-	}
+//	Pour Devise ?	
+//	public String getPriceUnitWithDevise() {
+//		return getPriceUnit() + "€";
+//	}
 	
 	@Override
 	public String toString() {

@@ -22,11 +22,13 @@ public class ImportCsvClientController {
 	@Autowired
 	private ClientCsvService clientUpload;
 	
+	//Affiche un menu interactif pour l'utilisateur permettant de choisir un fichier sur son ordinateur
 	@RequestMapping(value="/client-csv", method = RequestMethod.GET)
 	public String displayClient(ModelMap pModel) {
 		return "importCsvClient";
 	}
-
+	
+	//Permet de traiter le fichier Client en format CSV et d'ajouter les données en BDD
 	@RequestMapping(value="/uploadCsvClient", method = RequestMethod.POST)
 	public String importCsvClient(@Valid @ModelAttribute(value="uploadCsvClient") @RequestParam MultipartFile file) {		
 		try {

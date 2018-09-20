@@ -1,11 +1,18 @@
 package org.epsi.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class CreationFromClient {
-	
-    private Long client_id;
+public class EditFromClient {
 
+	private Long client_id;
+	
 	@NotEmpty(message="{NotEmpty.edit.name}")
 	private String name;
 	
@@ -15,10 +22,17 @@ public class CreationFromClient {
 	@NotEmpty(message="{NotEmpty.edit.billingPlace}")
 	private String billingPlace;
 	
+	@NotEmpty(message="{NotEmpty.edit.mail}")
 	private String mail;
 	
 	@NotEmpty(message="{NotEmpty.edit.phone}")
 	private String phone;
+		
+	@OneToMany(cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER,
+			targetEntity = Request.class,
+            mappedBy = "client")
+    private Set<Request> factures = new HashSet<>();
 
 	public Long getClient_id() {
 		return client_id;
@@ -68,4 +82,12 @@ public class CreationFromClient {
 		this.phone = phone;
 	}
 
+	public Set<Request> getFactures() {
+		return factures;
+	}
+
+	public void setFactures(Set<Request> factures) {
+		this.factures = factures;
+	}
+	
 }

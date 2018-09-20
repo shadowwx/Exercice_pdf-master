@@ -46,18 +46,31 @@ public class ClientServiceImpl implements ClientService {
     public void persistCreateClient(Client client) {
         clientDao.createClient(client);
     }
+    
+//    @Transactional
+//    public void persistEditClient(final List<Client> client) {
+//    	for (final Client lClient : client) {
+//    		clientDao.editClient(lClient);
+//        }
+//    }
+    
+    @Transactional
+    public void persistEditClient(final Client client) {
+    	final Client lClient = new Client();
+    	clientDao.editClient(lClient);
+    }
 
 	@Override
-	public Client getClient(Long clientId) {		
+	public Client getIdClient(Long clientId) {		
 		Client lClient = null;
 		
-		//recupération liste clients		
+		//recupï¿½ration liste clients		
         List<Client> clist = clientDao.getClients();
         
         //pour chaque client, verifie ID
         //SI id = parametre -> lCLient = ce client
         
-        //TODO regarder la fonctionnalité stream de java 8
+        //TODO regarder la fonctionnalitï¿½ stream de java 8
 
         for(Client clientCourant : clist) {
         	//traitementt

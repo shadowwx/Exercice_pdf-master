@@ -22,11 +22,13 @@ public class ImportCsvProductController {
 	@Autowired
 	private ProductCsvService productUpload;
 	
+	//Affiche un menu interactif pour l'utilisateur permettant de choisir un fichier sur son ordinateur
 	@RequestMapping(value="/product-csv", method = RequestMethod.GET)
 	public String displayProduct(ModelMap pModel) {
 		return "importCsvProduct";
 	}
 
+	//Permet de traiter le fichier Product en format CSV et d'ajouter les données en BDD
 	@RequestMapping(value="/uploadCsvProduct", method = RequestMethod.POST)
 	public String importCsvProduct(@Valid @ModelAttribute(value="uploadCsvProduct") @RequestParam MultipartFile file) {		
 		try {

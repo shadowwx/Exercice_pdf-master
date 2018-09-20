@@ -14,6 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="detailsrequests")
 public class DetailsRequests {
+	
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -38,4 +38,33 @@ public class ClientDaoImpl implements ClientDao {
 		entityManager.remove(lClient);
 	}
 	
+	public void editClient(final Client client) {
+
+		entityManager.getTransaction().begin();
+//		Client clientToUpdate = entityManager.find(Client.class, client.getClient_id());
+		entityManager.merge(client);
+		entityManager.getTransaction().commit();
+//		entityManager
+//		final CriteriaBuilder lCriteriaBuilder = entityManager.getCriteriaBuilder(); entityManager.get
+//		
+//        final CriteriaUpdate<Client> lCriteriaUpdate = lCriteriaBuilder.createCriteriaUpdate(Client.class);     
+//        final Root<Client> lRoot = lCriteriaUpdate.from(Client.class);
+//        final Path<Client> lPath = lRoot.get("clientId");
+//        final Expression<Boolean> lExpression = lCriteriaBuilder.equal(lPath, client.getClient_id());
+//        lCriteriaUpdate.where(lExpression);
+//        lCriteriaUpdate.set("name", client.getName());
+//        lCriteriaUpdate.set("firstName", client.getFirstName());
+//        lCriteriaUpdate.set("billingPlace", client.getBillingPlace());
+//        lCriteriaUpdate.set("mail", client.getMail());
+//        lCriteriaUpdate.set("phone", client.getPhone());
+//        final Query lQuery = entityManager.createQuery(lCriteriaUpdate);
+//        final int lRowCount = lQuery.executeUpdate();
+//
+//        if (lRowCount != 1) {
+//            final org.hibernate.Query lHQuery = lQuery.unwrap(org.hibernate.Query.class);
+//            final String lSql = lHQuery.getQueryString();
+//            throw new RuntimeException("Nombre d'occurences (" + lRowCount + 
+//                    ") modifiés différent de 1 pour " + lSql);
+//        }
+    }
 }

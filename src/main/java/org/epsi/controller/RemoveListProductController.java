@@ -13,17 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RemoveListProductController {
-
+	
 	@Autowired
     private ProductService service;
-
+	
+	//Affiche la liste des produits à supprimer
     @RequestMapping(value="/displayRemoveProduct", method = RequestMethod.GET)
     public String display(final ModelMap pModel) {
         final List<Product> lListProduct = service.getProducts();
         pModel.addAttribute("listProduct", lListProduct);
         return "removeProduct";
     }
-
+    
+    //Traitement qui supprime les produits
     @RequestMapping(value="/removeProduct", method = RequestMethod.GET)
     public String remove(@RequestParam(value="product_reference") final Long product_reference, final ModelMap pModel) {
         service.removeProduct(product_reference);;

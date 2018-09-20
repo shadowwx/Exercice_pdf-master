@@ -95,6 +95,8 @@ public class Client {
 		this.mail = mail;
 		this.phone = phone;
 	}
+	
+
 	@Override
 	public String toString() {
 		return "Client [client_id=" + client_id + ", name=" + name + ", firstName=" + firstName + ", billingPlace="

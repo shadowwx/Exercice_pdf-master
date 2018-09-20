@@ -67,6 +67,11 @@
 		                        <spring:message code="facture.extract.libelle" />
 		                    </a>
 		                </td>
+		                <td>		                    
+		                    <a href="displayEditClient/${client.client_id}">
+		                        <spring:message code="titre.edit.elementclients" />
+		                    </a>
+		                </td>
 	                 </tr>
                 </c:forEach>
             </tbody>

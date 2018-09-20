@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/home")
 public class HomeController {
 	
+	//Affiche la page d'accueil
     @RequestMapping(method = RequestMethod.GET)
     public String displayHome(ModelMap pModel) {
         return "home";

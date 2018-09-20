@@ -11,16 +11,15 @@
    		
 		<p><c:url value="/client" var="url" /><a href="${url}"><img alt="Default_image" src="<c:url value="/resources/images/img_client.png" />" style="width: 100px;" ></a></p>
 		<p><spring:message code="titre.client"/></p><br />
-		
-		
-		
+
 		<p><c:url value="/product" var="url" /><a href="${url}"><img alt="Default_image" src="<c:url value="/resources/images/img_product.png" />" style="width: 100px;" ></a></p>
 		<p><spring:message code="titre.product"/></p><br />
 		
-		
-		
 		<p><c:url value="/csv" var="url" /><a href="${url}"><img alt="Default_image" src="<c:url value="/resources/images/img_csv.png" />" style="width: 100px;" ></a></p>
 		<p><spring:message code="titre.csv"/></p>
+		
+		<p><c:url value="/home" var="url" /><a href="${url}"><img alt="Default_image" src="<c:url value="/resources/images/img_api.png" />" style="width: 100px;" ></a></p>
+		<p><spring:message code="titre.home"/></p>
 		
     </body>
 </html>

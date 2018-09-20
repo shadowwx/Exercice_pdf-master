@@ -18,6 +18,7 @@ public class ListClientController {
     @Autowired
     private ClientService service;
 
+    //Affiche la liste des clients renommer en client dans le code et en BDD
     @RequestMapping(method = RequestMethod.GET)
     public String display(ModelMap pModel) {
         final List<Client> lListClient = service.getClients();

@@ -6,10 +6,12 @@ import org.epsi.entity.Client;
 import org.epsi.entity.CreationFromClient;
 
 public interface ClientService {
-	public List<Client> getClients();
+	List<Client> getClients();
 	Client createClientFromCreationFromClient(CreationFromClient creationFromClient);
-	public Client getClient(Long clientId);
+	public Client getIdClient(Long clientId);
 	public void removeClient(Long client_id);
 	public void persistCreateClient(Client client);
+	public void persistEditClient(Client listeClient);
+	//public void persistEditClient(List<Client> listeClient);
 	
 }
