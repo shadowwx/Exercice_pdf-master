@@ -56,5 +56,32 @@ public class ProductServiceImpl implements ProductService {
     	boolean result = isNameOk && isBrandOk && isTypeOk && isNumberStockOk && isPriceUnitOk;
     	return result;
     }
+    
+	@Override
+	public Product getFindProductReference(Long product_reference) {		
+		Product lProduct = null;
+		
+		//recupération liste Produits		
+        List<Product> plist = productDao.getProducts();
+        
+        //pour chaque Produit, verifie ID
+        //SI id(product_reference) = parametre -> lProduit = ce produit
+        
+        //TODO regarder la fonctionnalit� stream de java 8
 
+        for(Product productCourant : plist) {
+        	//traitementt
+        	if(productCourant.getProduct_reference().equals(product_reference)) {
+        		lProduct = productCourant;
+        		break;
+        	}
+        }
+                
+        //retourne ce Produit 
+        return lProduct;
+	}
+
+	public void persistEditProduct(Product product) {
+		productDao.editProduct(product);
+	}
 }

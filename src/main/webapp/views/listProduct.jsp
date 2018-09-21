@@ -64,6 +64,11 @@
                         <td><c:out value="${product.type}"/></td>
                         <td><c:out value="${product.numberStock}"/></td>
                         <td><c:out value="${product.priceUnit}"/></td>
+                        <td>		                    
+		                    <a href="displayEditProduct/${product.product_reference}">
+		                        <spring:message code="titre.edit.elementproducts" />
+		                    </a>
+		                </td>
                     </tr>
                 </c:forEach>
             </tbody>

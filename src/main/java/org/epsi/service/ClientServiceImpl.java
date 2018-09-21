@@ -56,8 +56,8 @@ public class ClientServiceImpl implements ClientService {
     
     @Transactional
     public void persistEditClient(final Client client) {
-    	final Client lClient = new Client();
-    	clientDao.editClient(lClient);
+    	//final Client lClient = new Client();
+    	clientDao.editClient(client);
     }
 
 	@Override
@@ -83,7 +83,5 @@ public class ClientServiceImpl implements ClientService {
         //retourne ce client 
         return lClient;
 	}
-    
-    
     
 }

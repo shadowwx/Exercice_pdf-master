@@ -21,13 +21,14 @@
                 </tr>
             </thead>
             <tbody>
-            	<form:form method="post" modelAttribute="client" action="editClient" object="${editClient.client_id}">            	
+            	<form:form method="post" modelAttribute="editClient" action="editClient" object="${editClient.client_id}">            	
 	                    <tr>
 	                        <td><input type="text" id="name" name="name" value="<c:out value="${editClient.name}"/>"></td>
 	                        <td><input type="text" id="firstName" name="firstName" value="<c:out value="${editClient.firstName}"/>"></td>
 	                        <td><input type="text" id="billingPlace" name="billingPlace" value="<c:out value="${editClient.billingPlace}"/>"></td>
 	                        <td><input type="text" id="mail" name="mail" value="<c:out value="${editClient.mail}"/>"></td>
 	                        <td><input type="text" id="phone" name="phone" value="<c:out value="${editClient.phone}"/>"></td>
+	                        <td style="display:none"><input type="hidden" id="client_id" name="client_id" value="<c:out value="${editClient.client_id}"/>"></td>
 	                        <td>		                    
 			                    <input type="submit"/>
 			                </td>
@@ -35,11 +36,6 @@
                 </form:form>
             </tbody>
         </table>
-        <p><b><i><form:errors path="name" cssclass="error"/></i></b><br></p>
-        <p><b><i><form:errors path="firstName" cssclass="error"/></i></b><br></p>
-        <p><b><i><form:errors path="billingPlace" cssclass="error"/></i></b><br></p>
-        <p><b><i><form:errors path="mail" cssclass="error"/></i></b><br></p>
-        <p><b><i><form:errors path="phone" cssclass="error"/></i></b><br></p>
         <table>
             <tbody>
                 <tr>

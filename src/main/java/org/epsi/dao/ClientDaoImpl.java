@@ -4,13 +4,18 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 
 import org.epsi.entity.Client;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class ClientDaoImpl implements ClientDao {
@@ -38,33 +43,30 @@ public class ClientDaoImpl implements ClientDao {
 		entityManager.remove(lClient);
 	}
 	
+	@Transactional
 	public void editClient(final Client client) {
 
-		entityManager.getTransaction().begin();
-//		Client clientToUpdate = entityManager.find(Client.class, client.getClient_id());
-		entityManager.merge(client);
-		entityManager.getTransaction().commit();
-//		entityManager
-//		final CriteriaBuilder lCriteriaBuilder = entityManager.getCriteriaBuilder(); entityManager.get
-//		
-//        final CriteriaUpdate<Client> lCriteriaUpdate = lCriteriaBuilder.createCriteriaUpdate(Client.class);     
-//        final Root<Client> lRoot = lCriteriaUpdate.from(Client.class);
-//        final Path<Client> lPath = lRoot.get("clientId");
-//        final Expression<Boolean> lExpression = lCriteriaBuilder.equal(lPath, client.getClient_id());
-//        lCriteriaUpdate.where(lExpression);
-//        lCriteriaUpdate.set("name", client.getName());
-//        lCriteriaUpdate.set("firstName", client.getFirstName());
-//        lCriteriaUpdate.set("billingPlace", client.getBillingPlace());
-//        lCriteriaUpdate.set("mail", client.getMail());
-//        lCriteriaUpdate.set("phone", client.getPhone());
-//        final Query lQuery = entityManager.createQuery(lCriteriaUpdate);
-//        final int lRowCount = lQuery.executeUpdate();
-//
-//        if (lRowCount != 1) {
-//            final org.hibernate.Query lHQuery = lQuery.unwrap(org.hibernate.Query.class);
-//            final String lSql = lHQuery.getQueryString();
-//            throw new RuntimeException("Nombre d'occurences (" + lRowCount + 
-//                    ") modifiés différent de 1 pour " + lSql);
-//        }
+		final CriteriaBuilder lCriteriaBuilder = entityManager.getCriteriaBuilder();
+		
+        final CriteriaUpdate<Client> lCriteriaUpdate = lCriteriaBuilder.createCriteriaUpdate(Client.class);     
+        final Root<Client> lRoot = lCriteriaUpdate.from(Client.class);
+        final Path<Client> lPath = lRoot.get("client_id");
+        final Expression<Boolean> lExpression = lCriteriaBuilder.equal(lPath, client.getClient_id());
+        lCriteriaUpdate.where(lExpression);
+        lCriteriaUpdate.set("name", client.getName());
+        lCriteriaUpdate.set("firstName", client.getFirstName());
+        lCriteriaUpdate.set("billingPlace", client.getBillingPlace());
+        lCriteriaUpdate.set("mail", client.getMail());
+        lCriteriaUpdate.set("phone", client.getPhone());
+        final Query lQuery = entityManager.createQuery(lCriteriaUpdate);
+        final int lRowCount = lQuery.executeUpdate();
+
+        //Définir l'utilité de ce code
+        if (lRowCount != 1) {
+            final org.hibernate.Query lHQuery = lQuery.unwrap(org.hibernate.Query.class);
+            final String lSql = lHQuery.getQueryString();
+            throw new RuntimeException("Nombre d'occurences (" + lRowCount + 
+                    ") modifiés différent de 1 pour " + lSql);
+        }
     }
 }

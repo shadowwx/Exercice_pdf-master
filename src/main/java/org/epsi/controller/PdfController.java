@@ -140,19 +140,6 @@ public class PdfController {
 		document.add( Chunk.NEWLINE );
 		Client client = request.getClient();
 		
-//		Paragraph textIndice = new Paragraph("Validation du client", indice);
-//		textIndice.setAlignment(Element.ALIGN_CENTER);
-//		document.add(textIndice);
-		
-//		Chunk nom = new Chunk( champ, font);
-//	    Chunk nomGet = new Chunk(arg, regular);
-//	    Phrase phrase = new Phrase();
-//	    phrase.add(nom);
-//	    phrase.add(nomGet);
-		
-		
-		
-		
 		Chunk title = new Chunk("Facture n°", facture);
 		Chunk numFact = new Chunk(String.valueOf(request.getRequest_billNumber()), numFacture);
 		Phrase phrase = new Phrase();

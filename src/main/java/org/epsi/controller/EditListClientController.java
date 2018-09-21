@@ -1,7 +1,5 @@
 package org.epsi.controller;
 
-import javax.validation.Valid;
-
 import org.epsi.entity.Client;
 import org.epsi.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,21 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class EditListClientController {
-	
-//	@RequestMapping(value="/client1", method = RequestMethod.GET)
-//    public String clientForm(Model model) {
-//        model.addAttribute("client1", new Client());
-//        return "client1";
-//    }
-//
-//	@RequestMapping(value="/client1", method = RequestMethod.POST)
-//    public String clientSubmit(@ModelAttribute Client client) {
-//        return "result";
-//    }
-	
-	
-	
-	
 
 	@Autowired
     private ClientService clientService;
@@ -41,8 +24,8 @@ public class EditListClientController {
         return "editClient";
     }
     
-    @RequestMapping(value="/editClient", method = RequestMethod.POST)
-    public String edit(@Valid @ModelAttribute(value="client") Client editFromClient,/* final EditForm edit,*/ 
+    @RequestMapping(value="/displayEditClient/editClient", method = RequestMethod.POST)
+    public String edit(@ModelAttribute(value="editClient") Client editFromClient,
             final BindingResult pBindingResult, final ModelMap pModel) {
         if (!pBindingResult.hasErrors()) {
         	Client lClient = clientService.getIdClient(editFromClient.getClient_id());
@@ -55,6 +38,6 @@ public class EditListClientController {
             final Client editedClient = lClient;
         	clientService.persistEditClient(editedClient);
         }
-        return "display";
+        return "redirect:/client";
     }
 }

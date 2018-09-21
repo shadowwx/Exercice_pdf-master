@@ -9,4 +9,5 @@ public interface ProductDao {
 	public List<Product> getProducts();
 	void createProduct(final Product product);
 	void removeProduct(final Product product);
+	void editProduct(final Product product);
 }
