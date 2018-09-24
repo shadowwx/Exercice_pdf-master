@@ -127,7 +127,7 @@ public class PdfController {
 	    document.open();
 	    
 	  //Logo PDF placer en haut a droite du document.
-	    URL url = getClass().getClassLoader().getResource("testImage.png");
+	    URL url = getClass().getClassLoader().getResource("pdf.png");
 		if(null != url) {		
 		    System.out.println(url.toString());
 		    Image img = Image.getInstance(url);

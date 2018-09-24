@@ -64,12 +64,12 @@
                         <td><c:out value="${client.phone}"/></td>
 	                    <td>		                    
 		                    <a href="downloadPDF/${client.client_id}">
-		                        <spring:message code="facture.extract.libelle" />
+		                        <img alt="Default_image" src="<c:url value="/resources/images/img_pdf.png" />" style="width: 50px;" >
 		                    </a>
 		                </td>
 		                <td>		                    
 		                    <a href="displayEditClient/${client.client_id}">
-		                        <spring:message code="titre.edit.elementclients" />
+		                        <img alt="Default_image" src="<c:url value="/resources/images/img_edit.png" />" style="width: 50px;" >
 		                    </a>
 		                </td>
 	                 </tr>
