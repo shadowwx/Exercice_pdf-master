@@ -11,6 +11,8 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+//Permet de manipuler des donner produit lors de l'edition, permet d'afficher des erreurs en cas de champ vide.
+
 public class EditFromProduct {
 
 	private Long product_reference;

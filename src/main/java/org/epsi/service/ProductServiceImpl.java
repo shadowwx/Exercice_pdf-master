@@ -45,6 +45,8 @@ public class ProductServiceImpl implements ProductService {
 
         productDao.removeProduct(lProduct);
     }
+    
+    //Permet de vérifier la conformité de chaque données produits
     @Transactional
     public boolean checkCreationFromProduct(CreationFromProduct creationFromProduct) { 	
     	boolean isNameOk = creationFromProduct.getName() != null && !creationFromProduct.getName().isEmpty();
@@ -81,6 +83,7 @@ public class ProductServiceImpl implements ProductService {
         return lProduct;
 	}
 
+	//Envoi les données tiré du fichier en BDD
 	public void persistEditProduct(Product product) {
 		productDao.editProduct(product);
 	}

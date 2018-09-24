@@ -28,7 +28,7 @@ public class ImportCsvProductController {
 		return "importCsvProduct";
 	}
 
-	//Permet de traiter le fichier Product en format CSV et d'ajouter les données en BDD
+	//Traite le fichier Produit en format CSV et ajoute les données en Base
 	@RequestMapping(value="/uploadCsvProduct", method = RequestMethod.POST)
 	public String importCsvProduct(@Valid @ModelAttribute(value="uploadCsvProduct") @RequestParam MultipartFile file) {		
 		try {

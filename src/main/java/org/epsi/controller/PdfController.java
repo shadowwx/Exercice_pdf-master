@@ -68,7 +68,7 @@ public class PdfController {
 	@Autowired
 	private RequestService requestService;
 	
-	//Affiche la liste des commandes du clietn séléctionné
+	//Affiche la liste des commandes du client séléctionné
 	@RequestMapping(value = "/downloadPDF/{clientId}", method = RequestMethod.GET)
     public ModelAndView downloadExcel(@PathVariable(value="clientId") final Long clientId, ModelMap pModel) {
     	  	
@@ -91,11 +91,11 @@ public class PdfController {
 	//Génére un PDF de la facture du client
 	@RequestMapping(value = "/Facture-Pdf", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getPDF(@RequestParam(value="request_billNumber") Long billing) {
+		
 		//Récupération du numéro de facture/ID
 	    Request request = requestService.getRequest(billing);
-	    
-		
-	    // Here you have to set the actual filename of your pdf
+
+	    //Génére le nom du PDF
 	    String filename = "FactureClient-"+request.getClient().getClient_id()+".pdf";
 	    File myFile = new File(filename);
 	    FileOutputStream fos;
@@ -103,11 +103,11 @@ public class PdfController {
 	    Document document = new Document();
 	    
 	    
-	    
+	    //Création du PDF dans la page
 		try {
 			fos = new FileOutputStream(myFile);		
 
-			//Appel � la m�thode d'�criture dans le PDF
+			//Appel à la méthode d'écriture dans le PDF
 			writeInPdf(document, fos, request);
 		    out = Files.readAllBytes(myFile.toPath());
 		
@@ -115,11 +115,13 @@ public class PdfController {
 			e.printStackTrace();
 		}
 	    
+		//Construit la requête HTTP
 	    HttpHeaders headers = new HttpHeaders();
 	    headers.setContentType(MediaType.parseMediaType("application/pdf"));
 	    return new ResponseEntity<>(out, headers, HttpStatus.OK);
 	}
     
+	//Création du document PDF et de son avec contenue à afficher
     public void writeInPdf(Document document, FileOutputStream fos, Request request) throws DocumentException, MalformedURLException, IOException {
 		PdfWriter.getInstance(document, fos);
 	    document.open();
@@ -136,10 +138,12 @@ public class PdfController {
 			System.out.println("l'url de l'image est null");
 		}
 
-	    //Ajout du contenue Client
 		document.add( Chunk.NEWLINE );
+		
+	    //Ajout du contenue Client
 		Client client = request.getClient();
 		
+		//Numéro de la facture en haut de page
 		Chunk title = new Chunk("Facture n°", facture);
 		Chunk numFact = new Chunk(String.valueOf(request.getRequest_billNumber()), numFacture);
 		Phrase phrase = new Phrase();
@@ -150,6 +154,8 @@ public class PdfController {
 		document.add(TitleNum);
 		
 		document.add( Chunk.NEWLINE );
+		
+		//Ajout des données Client sur le PDF
   	    document.add(new Paragraph(createPhrase("Nom : ", client.getName())));
 	    document.add(new Paragraph(createPhrase("Prénom : ", client.getFirstName())));
 	    document.add(new Paragraph(createPhrase("Date de Commande : ", request.getDateCreation())));
@@ -157,18 +163,21 @@ public class PdfController {
 	    
 	    document.add( Chunk.NEWLINE );
 	    
-	    //Tableau des commandes du clients pour cette facture.
+	    //Tableaux de la commande du clients.
 	    PdfPTable table1 = new PdfPTable(5);
 	    addTableHeader(table1);
 	    
+	    //La commande
 	    for(DetailsRequests dr : request.getDetailsRequests()) {    		    	
 	    	addRow1(table1, dr);
 	    }
 	    
+	    //Le total
 	    PdfPTable table2 = new PdfPTable(2);
 	    addTableHeaderTotal(table2);
 	    addRow2(table2, request);
 	    
+	    //Ajout des Tableaux
 	    document.add(table1);
 	    document.add(table2);
 	    
@@ -188,15 +197,16 @@ public class PdfController {
 		}
 	    
 	    
-	    //Lieu et date de livraison		
+	    //Ajout des détails de livraison
 		document.add(new Paragraph(createPhrase("Lieu de Livraison : ", request.renderDeliveryPlace())));
-		//Mise en place d'une condition ternaire en cas de condition null
 		document.add(new Paragraph(createPhrase("Date de livraison : ", (request.getDateDelivery() !=null ? request.getDateDelivery() : "Aucune"))));
 		
 		document.add( Chunk.NEWLINE );
 		document.add( Chunk.NEWLINE );
 		document.add( Chunk.NEWLINE );
 		
+		
+		//Ajout de la confirmation ou non du client pour cette commande.
 		URL val = getClass().getClassLoader().getResource("validate.png");
 		URL wrong = getClass().getClassLoader().getResource("wrong.png");
 		if(null != val && null != wrong) {	
@@ -219,8 +229,7 @@ public class PdfController {
 			System.out.println("L'image de validation ou refus n'est plus disponible");
 		}
 		
-		//Confirmation du client et centré
-		//document.add(new Paragraph(String.valueOf(request.getConfirmation())));
+		//Text précisant le logo
 		Paragraph textIndice = new Paragraph("Validation du client", indice);
 		textIndice.setAlignment(Element.ALIGN_CENTER);
 		document.add(textIndice);
@@ -239,6 +248,7 @@ public class PdfController {
 	    return phrase;
 	}
 	
+	//Methode Affichant les champs dans un tableau
 	public void addTableHeader(PdfPTable table) {
 	    Stream.of("Qté", "Produit", "Unitaire", "Montant", "TVA")
 	      .forEach(columnTitle -> {
@@ -251,6 +261,7 @@ public class PdfController {
 	    });
 	}
 	
+	//Methode Affichant les champs dans un tableau
 	public void addTableHeaderTotal(PdfPTable table) {
 		Stream.of("Total HT", "Total TTC")
 	      .forEach(columnTitle -> {
@@ -263,6 +274,7 @@ public class PdfController {
 	    });
 	}
 	
+	//Permet d'ajouter mes lignes de commande à mon tabeau.
 	public void addRow1(PdfPTable table, DetailsRequests dr) {
 		
 		PdfPCell header = new PdfPCell();
@@ -290,7 +302,7 @@ public class PdfController {
 	    
 	}
 	
-	
+	//Permet d'ajouter mes lignes des totaux à mon tabeau.
 	public void addRow2(PdfPTable table, Request request) {
 		PdfPCell header = new PdfPCell();
 		header.setFixedHeight(20);

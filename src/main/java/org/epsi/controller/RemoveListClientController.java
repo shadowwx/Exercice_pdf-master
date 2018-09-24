@@ -25,7 +25,7 @@ public class RemoveListClientController {
         return "removeClient";
     }
 
-    //Traitement qui supprime les clients
+  //Delete en BDD le client choisi
     @RequestMapping(value="/removeClient", method = RequestMethod.GET)
     public String remove(@RequestParam(value="client_id") final Long client_id, final ModelMap pModel) {
     	service.removeClient(client_id);  

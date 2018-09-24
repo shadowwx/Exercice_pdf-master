@@ -28,7 +28,7 @@ public class ImportCsvClientController {
 		return "importCsvClient";
 	}
 	
-	//Permet de traiter le fichier Client en format CSV et d'ajouter les données en BDD
+	//Traite le fichier Client en format CSV et ajoute les données en Base
 	@RequestMapping(value="/uploadCsvClient", method = RequestMethod.POST)
 	public String importCsvClient(@Valid @ModelAttribute(value="uploadCsvClient") @RequestParam MultipartFile file) {		
 		try {

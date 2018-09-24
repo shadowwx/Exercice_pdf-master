@@ -9,6 +9,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+//Permet de manipuler des donner client lors de l'edition, permet d'afficher des erreurs en cas de champ vide.
+
 public class EditFromClient {
 
 	private Long client_id;

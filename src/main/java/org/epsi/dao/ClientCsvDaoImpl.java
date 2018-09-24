@@ -18,6 +18,7 @@ public class ClientCsvDaoImpl implements ClientCsvDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	//Selectionne les clients en BDD
 	public List<Client> getClients() {
 		final CriteriaBuilder lCriteriaBuilder = entityManager.getCriteriaBuilder();
 

@@ -17,6 +17,7 @@ public class EditListClientController {
 	@Autowired
     private ClientService clientService;
 
+	//Affiche la page de modification liée à l'ID choisi
     @RequestMapping(value="/displayEditClient/{clientId}", method = RequestMethod.GET)
     public String display(@PathVariable(value="clientId") final Long clientId, ModelMap pModel) {
     	Client client = clientService.getIdClient(clientId);
@@ -24,6 +25,7 @@ public class EditListClientController {
         return "editClient";
     }
     
+    //Créer une update en BDD
     @RequestMapping(value="/displayEditClient/editClient", method = RequestMethod.POST)
     public String edit(@ModelAttribute(value="editClient") Client editFromClient,
             final BindingResult pBindingResult, final ModelMap pModel) {

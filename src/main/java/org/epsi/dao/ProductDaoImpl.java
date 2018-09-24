@@ -23,6 +23,7 @@ public class ProductDaoImpl implements ProductDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	//Selectionne les produits en BDD
 	public List<Product> getProducts() {
 		final CriteriaBuilder lCriteriaBuilder = entityManager.getCriteriaBuilder();
 
@@ -43,6 +44,7 @@ public class ProductDaoImpl implements ProductDao {
         entityManager.remove(lProduct);
     }
     
+    //Modifie en base les champs set
     @Transactional
     public void editProduct(final Product product) {
 		
@@ -62,14 +64,15 @@ public class ProductDaoImpl implements ProductDao {
         lCriteriaUpdate.set("commentary", product.getCommentary());
         //lCriteriaUpdate.set("tva", product.getTva());
         final Query lQuery = entityManager.createQuery(lCriteriaUpdate);
-        final int lRowCount = lQuery.executeUpdate();
+        lQuery.executeUpdate();
+        
+        //final int lRowCount = lQuery.executeUpdate();
 
-        //Définir l'utilité de ce code
-        if (lRowCount != 1) {
-            final org.hibernate.Query lHQuery = lQuery.unwrap(org.hibernate.Query.class);
-            final String lSql = lHQuery.getQueryString();
-            throw new RuntimeException("Nombre d'occurences (" + lRowCount + 
-                    ") modifiés différent de 1 pour " + lSql);
-        }
+//        if (lRowCount != 1) {
+//            final org.hibernate.Query lHQuery = lQuery.unwrap(org.hibernate.Query.class);
+//            final String lSql = lHQuery.getQueryString();
+//            throw new RuntimeException("Nombre d'occurences (" + lRowCount + 
+//                    ") modifiés différent de 1 pour " + lSql);
+//        }
     }
 }

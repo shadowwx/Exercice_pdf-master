@@ -23,6 +23,7 @@ public class ClientDaoImpl implements ClientDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	//Selectionne les clients en BDD
 	public List<Client> getClients() {
 		final CriteriaBuilder lCriteriaBuilder = entityManager.getCriteriaBuilder();
 
@@ -43,6 +44,7 @@ public class ClientDaoImpl implements ClientDao {
 		entityManager.remove(lClient);
 	}
 	
+	//Modifie en base les champ set
 	@Transactional
 	public void editClient(final Client client) {
 
@@ -59,14 +61,15 @@ public class ClientDaoImpl implements ClientDao {
         lCriteriaUpdate.set("mail", client.getMail());
         lCriteriaUpdate.set("phone", client.getPhone());
         final Query lQuery = entityManager.createQuery(lCriteriaUpdate);
-        final int lRowCount = lQuery.executeUpdate();
+        lQuery.executeUpdate();
+        
+        //final int lRowCount = lQuery.executeUpdate();
 
-        //Définir l'utilité de ce code
-        if (lRowCount != 1) {
-            final org.hibernate.Query lHQuery = lQuery.unwrap(org.hibernate.Query.class);
-            final String lSql = lHQuery.getQueryString();
-            throw new RuntimeException("Nombre d'occurences (" + lRowCount + 
-                    ") modifiés différent de 1 pour " + lSql);
-        }
+//        if (lRowCount != 1) {
+//            final org.hibernate.Query lHQuery = lQuery.unwrap(org.hibernate.Query.class);
+//            final String lSql = lHQuery.getQueryString();
+//            throw new RuntimeException("Nombre d'occurences (" + lRowCount + 
+//                    ") modifiés différent de 1 pour " + lSql);
+//        }
     }
 }

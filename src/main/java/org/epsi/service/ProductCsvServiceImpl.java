@@ -30,12 +30,14 @@ public class ProductCsvServiceImpl implements ProductCsvService {
     String line = null;
     String cvsSplit = ";";
 	
+    
+    //Permet de lire le CSV
 	@Transactional
 	public List<Product> readCsvProduct(InputStream file) {
 
     	br = new BufferedReader(new InputStreamReader(file));
     	List<Product> productList = new ArrayList<Product>();
-        // Cette boucle permet de s�par� chaque ligne et de boucler jusqu'a qu'il n'y en est plus.
+        //Cette boucle permet de séparé chaque ligne et de boucler jusqu'a qu'il n'y en est plus.
 			try {
 				while ((line = br.readLine()) != null) {
 				    // Permet de s�par� les occurences
@@ -59,7 +61,7 @@ public class ProductCsvServiceImpl implements ProductCsvService {
 			return productList;
 	}
 
-
+	//Envoi les données tiré du fichier en BDD
 	@Transactional
     public void persistImportProduct(List<Product> product) {
 		for(int i=0 ; i<product.size() ; i++) {

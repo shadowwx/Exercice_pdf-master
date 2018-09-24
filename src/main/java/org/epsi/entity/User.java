@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//Evolution programme 2.0
+//Class pour manipuler des users en BDD
+
 @Entity
 @Table(name="users")
 public class User {

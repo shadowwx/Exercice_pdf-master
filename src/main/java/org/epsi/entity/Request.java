@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+//Permet de manipuler les commandes générale (requests)
+
 @Entity
 @Table(name="requests")
 public class Request {

@@ -1,7 +1,6 @@
 package org.epsi.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.epsi.dao.UserDao;
 import org.epsi.entity.User;
@@ -21,8 +20,10 @@ public class UserServiceImpl implements UserService{
 		return userDao.getUsers();
 	}
 
-	@Transactional(readOnly=true)
-	public Optional<User> findUserByUserName(String userName) {
-		return userDao.findUserByUserName(userName);
-	}
+	//Evolution programme 2.0
+	//???
+//	@Transactional(readOnly=true)
+//	public Optional<User> findUserByUserName(String userName) {
+//		return userDao.findUserByUserName(userName);
+//	}
 }

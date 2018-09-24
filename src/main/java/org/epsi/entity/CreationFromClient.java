@@ -2,6 +2,8 @@ package org.epsi.entity;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+//Permet de manipuler les données d'un client lors de la création, affiche différentes erreurs.
+
 public class CreationFromClient {
 	
     private Long client_id;

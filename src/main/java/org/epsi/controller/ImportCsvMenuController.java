@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/csv")
 public class ImportCsvMenuController {
 
-	//Affiche un menu permettant de s'orienter sur un client ou un produit pour envoyer son import CSV
+	//Affiche le menu choix du type (clients ou produits) d'import CSV
 	@RequestMapping(method = RequestMethod.GET)
 	public String display(ModelMap pModel) {
 		return "importCsvMenu";

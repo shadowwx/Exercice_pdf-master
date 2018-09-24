@@ -18,6 +18,7 @@ public class RequestDaoImpl implements RequestDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	//Liste des commandes
 	public List<Request> getRequests() {
 		final CriteriaBuilder lCriteriaBuilder = entityManager.getCriteriaBuilder();
 

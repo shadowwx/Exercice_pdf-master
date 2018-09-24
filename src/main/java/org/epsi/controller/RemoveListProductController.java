@@ -25,7 +25,7 @@ public class RemoveListProductController {
         return "removeProduct";
     }
     
-    //Traitement qui supprime les produits
+    //Delete en BDD le produit choisi
     @RequestMapping(value="/removeProduct", method = RequestMethod.GET)
     public String remove(@RequestParam(value="product_reference") final Long product_reference, final ModelMap pModel) {
         service.removeProduct(product_reference);;

@@ -29,12 +29,13 @@ public class ClientCsvServiceImpl implements ClientCsvService {
     String line = null;
     String cvsSplit = ";";
 	
+    //Permet de lire le CSV
 	@Transactional
 	public List<Client> readCsvClient(InputStream file) {
 
     	br = new BufferedReader(new InputStreamReader(file));
     	List<Client> clientList = new ArrayList<Client>();
-        // Cette boucle permet de s�par� chaque ligne et de boucler jusqu'a qu'il n'y en est plus.
+    	//Cette boucle permet de séparé chaque ligne et de boucler jusqu'a qu'il n'y en est plus.
 			try {
 				while ((line = br.readLine()) != null) {
 				    // Permet de s�par� les occurences
@@ -52,6 +53,7 @@ public class ClientCsvServiceImpl implements ClientCsvService {
 	}
 
 
+	//Envoi les données tiré du fichier en BDD
 	@Transactional
     public void persistImportClient(List<Client> client) {
 		for(int i=0 ; i<client.size() ; i++) {

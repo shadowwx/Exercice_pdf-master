@@ -17,6 +17,7 @@ public class EditListProductController {
 	@Autowired
     private ProductService productService;
 
+	//Affiche la page de modification liée à l'ID choisi
     @RequestMapping(value="/displayEditProduct/{product_reference}", method = RequestMethod.GET)
     public String display(@PathVariable(value="product_reference") final Long product_reference, ModelMap pModel) {
     	Product product = productService.getFindProductReference(product_reference);
@@ -24,6 +25,7 @@ public class EditListProductController {
         return "editProduct";
     }
     
+    //Créer une update en BDD
     @RequestMapping(value="/displayEditProduct/editProduct", method = RequestMethod.POST)
     public String edit(@ModelAttribute(value="editProduct") Product editFromProduct, 
             final BindingResult pBindingResult, final ModelMap pModel) {

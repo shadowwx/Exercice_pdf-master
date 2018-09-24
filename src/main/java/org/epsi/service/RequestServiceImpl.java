@@ -20,6 +20,7 @@ public class RequestServiceImpl implements RequestService {
 		return requestDao.getRequests();
 	}
 	
+	//appel la listes des Requests possédant le numéro de commande (billNumber)
 	@Override
 	public Request getRequest(Long request_billNumber) {		
 		Request lRequest = null;
@@ -28,7 +29,7 @@ public class RequestServiceImpl implements RequestService {
 	        //pour chaque client, verifie ID
 	        //SI id = parametre -> lCLient = ce client
 	        		 
-	        //TODO regarder la fonctionnalit� stream de java 8
+	        //TODO regarder la fonctionnalit� stream de java 8
 
 	        for(Request requestCourant : rlist) {
 	        	//traitementt

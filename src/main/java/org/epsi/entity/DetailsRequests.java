@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+//Permet de manipuler le détails des commandes pour chaque produit commandé (détailsRequests)
+
 @Entity
 @Table(name="detailsrequests")
 public class DetailsRequests {

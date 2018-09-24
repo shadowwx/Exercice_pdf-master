@@ -55,11 +55,6 @@
 	<listener>
     	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-
-	<servlet>
-		<servlet-name>Welcome</servlet-name>
-		<servlet-class>org.epsi.servlets.WelcomeServlet</servlet-class>
-	</servlet>
 	
 	<servlet>
 	    <servlet-name>dispatcher</servlet-name>

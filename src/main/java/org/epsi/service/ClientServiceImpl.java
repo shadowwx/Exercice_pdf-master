@@ -47,13 +47,6 @@ public class ClientServiceImpl implements ClientService {
         clientDao.createClient(client);
     }
     
-//    @Transactional
-//    public void persistEditClient(final List<Client> client) {
-//    	for (final Client lClient : client) {
-//    		clientDao.editClient(lClient);
-//        }
-//    }
-    
     @Transactional
     public void persistEditClient(final Client client) {
     	//final Client lClient = new Client();

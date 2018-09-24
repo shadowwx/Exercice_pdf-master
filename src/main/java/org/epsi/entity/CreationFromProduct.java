@@ -4,6 +4,8 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+//Permet de manipuler les données produit lors de la création, affiche différente erreurs.
+
 public class CreationFromProduct {
 	
 	private Long reference_product;

@@ -18,6 +18,7 @@ public class ProductCsvDaoImpl implements ProductCsvDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
+	//Selectionne les produits en BDD
 	public List<Product> getProducts() {
 		final CriteriaBuilder lCriteriaBuilder = entityManager.getCriteriaBuilder();
 
@@ -29,6 +30,7 @@ public class ProductCsvDaoImpl implements ProductCsvDao {
 		return lTypedQuery.getResultList();
 	}
 
+	
 	public void importProduct(final Product product) {
 		entityManager.persist(product);
 	}
