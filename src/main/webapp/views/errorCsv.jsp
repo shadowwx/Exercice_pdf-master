@@ -6,6 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="resources/bootstrap/css/myCss-home.css" rel="stylesheet">
+        <script src="resources/bootstrap/js/jquery.js"></script>
+		<script src="resources/bootstrap/js/bootstrap.min.js"></script>
 <title>Erreur</title>
 </head>
 <body>

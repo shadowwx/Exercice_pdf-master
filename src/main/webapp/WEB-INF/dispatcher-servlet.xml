@@ -33,6 +33,7 @@
 	
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/resources/images/**" location="/WEB-INF/resources/images/" />
+	<mvc:resources mapping="/resources/bootstrap/**" location="/WEB-INF/resources/bootstrap/" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	

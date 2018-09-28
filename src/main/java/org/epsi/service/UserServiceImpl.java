@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+//Evolution programme 2.0
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -20,8 +22,6 @@ public class UserServiceImpl implements UserService{
 		return userDao.getUsers();
 	}
 
-	//Evolution programme 2.0
-	//???
 //	@Transactional(readOnly=true)
 //	public Optional<User> findUserByUserName(String userName) {
 //		return userDao.findUserByUserName(userName);

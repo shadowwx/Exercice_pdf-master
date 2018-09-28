@@ -7,6 +7,11 @@
 <html>
     <head>
         <title><spring:message code="titre.edit.elementproducts"/></title>
+        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="resources/bootstrap/css/myCss-home.css" rel="stylesheet">
+        <script src="resources/bootstrap/js/jquery.js"></script>
+		<script src="resources/bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
         <table border="1">

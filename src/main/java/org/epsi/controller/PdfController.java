@@ -80,7 +80,7 @@ public class PdfController {
         	for(Request r : lClient.getFactures()) {
         		lRequest.add(r);
         	}
-        	pModel.addAttribute("lRequest", lRequest);
+        	pModel.addAttribute("listRequest", lRequest);
         	pModel.addAttribute("lClient", lClient);
     	} else {
         	System.out.println("Error client null");

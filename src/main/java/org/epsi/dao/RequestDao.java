@@ -7,5 +7,8 @@ import org.epsi.entity.Request;
 
 public interface RequestDao {
 	public List<Request> getRequests();
+	void createRequest(final Request request);
+	void removeRequest(final Request request);
+	void editRequest(final Request request);
 
 }

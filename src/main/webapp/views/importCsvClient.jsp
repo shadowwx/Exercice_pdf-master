@@ -6,17 +6,36 @@
 <html>
     <head>
         <title><spring:message code="titre.csv"/></title>
+        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="resources/bootstrap/css/myCss-home.css" rel="stylesheet">
+        <script src="resources/bootstrap/js/jquery.js"></script>
+		<script src="resources/bootstrap/js/bootstrap.min.js"></script>
 	</head>
-	<body>
-	<form:form method="post" enctype="multipart/form-data" action="uploadCsvClient">
-		<fieldset>
-	        <legend>Choisir un fichier Client</legend>	        
-			<label>Votre fichier doit être un CSV de type client :</label>
-			<input type="file" name="file" />
-			<br /><br />
-			<button type="submit" value="upload">Envoyer</button>
-			<br />
-		</fieldset>
-	</form:form>
+	<body id="backgroundUpload">
+		<div id="return-left" class="col-xs-6" style="position: absolute; z-index:10;">
+		    <p><c:url value="/csv" var="url" /><a href="${url}"><img alt="Choix du type de CSV" src="<c:url value="/resources/images/img_back.png" />" style="width: 60px;" ></a></p>
+		</div>
+		<div id="return-right" class="col-xs-6">
+	    	<p><c:url value="/menu" var="url" /><a href="${url}"><img alt="Retour au menu principal" src="<c:url value="/resources/images/img_api.png" />" style="width: 60px;" ></a></p>
+	    </div>
+		<form:form method="post" enctype="multipart/form-data" action="uploadCsvClient">
+			<fieldset>
+			<div class="container">
+		    	<div class="row" style="text-align: center;">
+					<div class="col-lg-12 logoMenu" style="text-align: center;">
+		        		<p class="titleMenu">Choisir un fichier Client</p>
+		        		<div class="p-5"></div>
+					   	<img alt="Nouveaux Clients" src="<c:url value="/resources/images/img_client-meet.png" />" style="width: 250px;" >
+					   	<div class="p-5"></div>        
+						<label>Votre fichier doit être un CSV de type client :</label><br />
+						<input type="file" name="file" />
+						<div class="p-5"></div>
+					</div>
+		        </div>
+		   	</div>	
+			<center><button  type="submit" class="btn btn-secondary btn-lg btn-block" style="width: 50%;" value="upload">Envoyer</button></center>
+			</fieldset>
+		</form:form>
 	</body>
 </html>

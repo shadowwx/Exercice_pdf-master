@@ -5,12 +5,23 @@
 <html>
     <head>
         <title>Projet PDF U'DEV</title>
+        <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="resources/bootstrap/css/myCss-home.css" rel="stylesheet">
+        <script src="resources/bootstrap/js/jquery.js"></script>
+		<script src="resources/bootstrap/js/bootstrap.min.js"></script>
     </head>
-    <body>
-    <h1>Projet PDF</h1>
-        <p>Bonjour et bienvenue sur le projet PDF de Florian.</p>
-        <p>Si vous désirez vous servir de l'application, cliquez sur le bouton !</p>
-        <p><c:url value="/menu" var="url" /><a href="${url}"><img alt="Default_image" src="<c:url value="/resources/images/img_api.png" />" style="width: 200px;" ></a></p>
+    <body id="bodyHome" >
+    
+    <h1><center>Projet PDF</center></h1>
+    <div class="center">
+        <center><p class="titleHome">Bonjour et bienvenue sur le projet PDF-CSV de Florian.</p></center>
+        <center><p class="titleHome">Le projet à était réaliser à l'aide des ressources CGI(Entreprise) et EPSI(Formation)</p></center>
+        <center><p class="titleHome">Si vous désirez vous servir de l'application, cliquez sur le bouton !</p></center>
+        <center><div class="logoHome">
+        	<p class="titleHome"><c:url value="/menu" var="url" /><a href="${url}"><img title="Le projet" alt="Menu" src="<c:url value="/resources/images/img_api.png" />" style="width: 200px;" ></a></p>
+   		</div></center>
+    </div>
+    
 <!--         <p>Pour commencer authentifiez-vous svp.</p>
 		<form method="post" action="traitement.php">
 			<p>

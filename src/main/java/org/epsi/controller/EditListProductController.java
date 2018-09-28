@@ -39,8 +39,7 @@ public class EditListProductController {
         	product.setPriceUnit(editFromProduct.getPriceUnit());
         	product.setCommentary(editFromProduct.getCommentary());
         	//product.setTva(editFromProduct.getTva());
-        	
-        	
+        	        	
             final Product editedProduct = product;
             productService.persistEditProduct(editedProduct);
         }

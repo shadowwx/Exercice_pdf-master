@@ -4,6 +4,7 @@ import java.util.List;
 //import java.util.Optional;
 
 import org.epsi.dao.RequestDao;
+import org.epsi.entity.CreationFromRequest;
 import org.epsi.entity.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,19 @@ public class RequestServiceImpl implements RequestService {
 	@Transactional(readOnly=true)
 	public List<Request> getRequests() {
 		return requestDao.getRequests();
+	}
+	
+	public Request createRequestFromCreationFromRequest (CreationFromRequest creationFromRequest){
+		final Request lRequest = new Request();
+		lRequest.setRequest_billNumber(creationFromRequest.getRequest_billNumber());
+		lRequest.setDateCreation(creationFromRequest.getDateCreation());
+		lRequest.setDateDelivery(creationFromRequest.getDateDelivery());
+		lRequest.setConfirmation(creationFromRequest.isConfirmation());
+		lRequest.setDeliveryPlace(creationFromRequest.getDeliveryPlace());
+		lRequest.setClient(creationFromRequest.getClient());
+		lRequest.setDetailsRequests(creationFromRequest.getDetailsRequests());
+        
+        return lRequest;
 	}
 	
 	//appel la listes des Requests possédant le numéro de commande (billNumber)
@@ -42,4 +56,39 @@ public class RequestServiceImpl implements RequestService {
 	        //retourne ce client 
 	        return lRequest;
 		}
+	
+	@Transactional
+    public void persistCreateRequest(Request request) {
+        requestDao.createRequest(request);
+    }
+	
+	@Transactional
+	public void persistRemoveRequest(Long request_billNumber) {
+		final Request lRequest = new Request();
+		lRequest.setRequest_billNumber(request_billNumber);
+        
+		requestDao.removeRequest(lRequest);
+	}
+	
+	//Envoi les données tiré du fichier en BDD
+	public void persistEditRequest(Request request) {
+		requestDao.editRequest(request);
+	}
+	
+	public Request getFindRequestBillNumber(Long request_billNumber) {
+		Request lRequest = null;
+		
+		//recupération liste Requests		
+        List<Request> rlist = requestDao.getRequests();
+
+        for(Request requestCourant : rlist) {
+        	//traitement
+        	if(requestCourant.getRequest_billNumber().equals(request_billNumber)) {
+        		lRequest = requestCourant;
+        		break;
+        	}
+        }
+        //retourne cette commande
+        return lRequest;
+	}
 }
