@@ -21,19 +21,6 @@ public class RequestServiceImpl implements RequestService {
 		return requestDao.getRequests();
 	}
 	
-	public Request createRequestFromCreationFromRequest (CreationFromRequest creationFromRequest){
-		final Request lRequest = new Request();
-		lRequest.setRequest_billNumber(creationFromRequest.getRequest_billNumber());
-		lRequest.setDateCreation(creationFromRequest.getDateCreation());
-		lRequest.setDateDelivery(creationFromRequest.getDateDelivery());
-		lRequest.setConfirmation(creationFromRequest.isConfirmation());
-		lRequest.setDeliveryPlace(creationFromRequest.getDeliveryPlace());
-		lRequest.setClient(creationFromRequest.getClient());
-		lRequest.setDetailsRequests(creationFromRequest.getDetailsRequests());
-        
-        return lRequest;
-	}
-	
 	//appel la listes des Requests possédant le numéro de commande (billNumber)
 	@Override
 	public Request getRequest(Long request_billNumber) {		

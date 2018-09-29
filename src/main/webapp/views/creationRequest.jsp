@@ -15,7 +15,6 @@
 		<link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">		
 		<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<link rel="stylesheet" href="/resources/demos/style.css">
 		<link href="resources/bootstrap/css/myCss-home.css" rel="stylesheet">
 		<script src="resources/bootstrap/js/jquery.js"></script>
 		<script src="resources/bootstrap/js/bootstrap.min.js"></script>
@@ -25,6 +24,35 @@
 			$( function() {
 			  $( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
 			} );
+		</script>
+		<script>
+			
+				var clientsData = [];
+				$(document).ready(function(){
+					$.ajax("/projet-pdf-csv/jsonApi/clients").success(function(data){
+						data.forEach(function(element, index)
+						{
+							if(element.firstName !== undefined && element.name !== undefined)
+							{
+								clientsData.push({label: element.firstName + " " + element.name, value: element.firstName + " " + element.name, id: element.id});
+							}
+							else if(element.firstName !== undefined)
+							{
+								clientsData.push({label: element.firstName, value: element.firstName, id: element.id});
+							}
+							else if(element.name !== undefined)
+							{
+								clientsData.push({label: element.name, value: element.name, id: element.id});
+							}
+						});
+						$("#clientName").autocomplete({source: clientsData,
+							select: function(event, ui)
+							{
+								$("#clientId").attr("value", ui.item.id);
+							}
+							
+						})});
+				})
 		</script>
     </head>
     <body id="backgroundList">
@@ -38,24 +66,15 @@
 	    		</div>
 	    	</div>
 	    </div>
+	   
 	    <div id="input-creation" class="tablePlus">
         <form:form method="post" modelAttribute="creationRequest" action="creationRequest">
 
 			<spring:message code="creation.elementrequests.libelle.client" />
-            <form:select name="request" path="client" size="1" width="20" >
-            	<c:forEach items="${listRequest}" var="request">
-			        <option>
-			        	<c:out value="${request.client.name}" />
-			        </option>
-			    </c:forEach>
-            </form:select>
 
-            <spring:message code="creation.elementrequests.libelle.dateCreation" />
-            <form path="dateCreation" id="iop" class="java.util.Date">
-            	<c:set var="today" value="<%=new java.util.Date()%>" />
-            	<strong><fmt:formatDate type = "date" value = "${today}" pattern="yyyy-MM-dd" /></strong>
-            </form>
-            
+			<input type="text" id="clientName"/>
+			<form:input id="clientId" path="clientId" cssStyle="display:none"/>
+			
             <spring:message code="creation.elementrequests.libelle.dateDelivery" /> 
             <form:input type="text" id="datepicker" path="dateDelivery" alt="calendrier" /><br />
             
@@ -63,27 +82,20 @@
             <form:input path="deliveryPlace"/>
             <b><i><form:errors path="deliveryPlace" cssclass="error"/></i></b><br>
             
-            <spring:message code="creation.elementrequests.libelle.confirmation" />
-            <form path="confirmation">
-	            <input type="radio" name="confirmation" value=true > Oui
-	            <input type="radio" name="confirmation" value=false checked> Non
-            </form>
+            <input type="radio" name="confirmation" value=true > Oui
+            <input type="radio" name="confirmation" value=false checked> Non
             <b><i><form:errors path="confirmation" cssclass="error"/></i></b><br>
 
 			<br />
 	
-			<spring:message code="creation.elementrequests.libelle.detailsRequest" />
-            <form:select name="request" path="detailsRequests" size="1" width="20" >
-            	<c:forEach items="${listRequest}" var="request">
-			        <option>
-			        	<c:out value="${request.detailsRequests}" />
-			        </option>
-			    </c:forEach>
-            </form:select>
-
-			<spring:message code="creation.elementrequests.libelle.quantity" />
-            <form:input path="detailsRequests"/>
-            <b><i><form:errors path="detailsRequests" cssclass="error"/></i></b><br>
+			<c:forEach items='${productList}' var="product" varStatus="status">
+				
+				<div>
+					<input name="products[${status.count}].name" type="text" value="${product.name}"/>
+					<input name="products[${status.count}].weight" value="${product.weight}"/>
+				</div>			
+			
+			</c:forEach>
 
            	<div class="p-4"></div>
             <input type="submit"/>

@@ -1,47 +1,38 @@
 package org.epsi.entity;
 
+import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
-
 
 public class CreationFromRequest {
 
-    @NotEmpty(message="{NotEmpty.edit.request_billNumber}")
 	private Long request_billNumber;
     
-    @NotEmpty(message="{NotEmpty.edit.dateCreation}")
 	private String dateCreation;
     
-    @NotEmpty(message="{NotEmpty.edit.dateDelivery}")
 	private String dateDelivery;
 	
-    @NotEmpty(message="{NotEmpty.edit.confirmation}")
 	private boolean confirmation;
 
-    @NotEmpty(message="{NotEmpty.edit.deliveryPlace}")
 	private String deliveryPlace;
     
-    @NotEmpty(message="{NotEmpty.edit.client_id}")
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id", insertable=false, updatable=false, nullable=false)
-    private Client client;
+    private Long clientId;
     
-    @OneToMany(cascade = CascadeType.ALL,
-			fetch = FetchType.EAGER,
-			targetEntity = DetailsRequests.class,
-            mappedBy = "request")
+    private List<Product> products = new ArrayList<>();
+    
+    private List<Integer> quantities = new ArrayList<>();
+    
     private Set<DetailsRequests> detailsRequests = new HashSet<>();
     
-
+    public CreationFromRequest()
+    {
+    	this.dateCreation = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+    }
+    
 	public Long getRequest_billNumber() {
 		return request_billNumber;
 	}
@@ -82,12 +73,12 @@ public class CreationFromRequest {
 		this.deliveryPlace = deliveryPlace;
 	}
 
-	public Client getClient() {
-		return client;
+	public Long getClientId() {
+		return clientId;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setClientId(Long clientId) {
+		this.clientId = clientId;
 	}
 
 	public Set<DetailsRequests> getDetailsRequests() {
@@ -96,6 +87,36 @@ public class CreationFromRequest {
 
 	public void setDetailsRequests(Set<DetailsRequests> detailsRequests) {
 		this.detailsRequests = detailsRequests;
+	}
+	
+	public String toString()
+	{
+		StringBuilder strB = new StringBuilder();
+		for(Field field : this.getClass().getDeclaredFields())
+		{
+			try {
+				strB.append(field.getName() + " - " + (field.get(this) != null ? field.get(this) : "vide") + "\n");
+			} catch (Exception e) {
+				
+			}
+		}
+		return strB.toString();
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	public List<Integer> getQuantities() {
+		return quantities;
+	}
+
+	public void setQuantities(List<Integer> quantities) {
+		this.quantities = quantities;
 	}
     
 }

@@ -1,8 +1,10 @@
 package org.epsi.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -96,20 +98,15 @@ public class PdfController {
 	    Request request = requestService.getRequest(billing);
 
 	    //Génére le nom du PDF
-	    String filename = "FactureClient-"+request.getClient().getClient_id()+".pdf";
-	    File myFile = new File(filename);
-	    FileOutputStream fos;
-	    byte[] out = new byte[]{};
+	    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+	    byte[] out = null;
 	    Document document = new Document();
-	    
 	    
 	    //Création du PDF dans la page
 		try {
-			fos = new FileOutputStream(myFile);		
-
 			//Appel à la méthode d'écriture dans le PDF
-			writeInPdf(document, fos, request);
-		    out = Files.readAllBytes(myFile.toPath());
+			writeInPdf(document, outputStream, request);
+		    out = outputStream.toByteArray();
 		
 		} catch (IOException|DocumentException e) {
 			e.printStackTrace();
@@ -122,8 +119,8 @@ public class PdfController {
 	}
     
 	//Création du document PDF et de son avec contenue à afficher
-    public void writeInPdf(Document document, FileOutputStream fos, Request request) throws DocumentException, MalformedURLException, IOException {
-		PdfWriter.getInstance(document, fos);
+    public void writeInPdf(Document document, OutputStream os, Request request) throws DocumentException, MalformedURLException, IOException {
+		PdfWriter.getInstance(document, os);
 	    document.open();
 	    
 	  //Logo PDF placer en haut a droite du document.
@@ -142,7 +139,6 @@ public class PdfController {
 		
 	    //Ajout du contenue Client
 		Client client = request.getClient();
-		
 		//Numéro de la facture en haut de page
 		Chunk title = new Chunk("Facture n°", facture);
 		Chunk numFact = new Chunk(String.valueOf(request.getRequest_billNumber()), numFacture);

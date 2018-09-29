@@ -39,7 +39,7 @@ public class Request {
 	private String deliveryPlace;
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id", insertable=false, updatable=false, nullable=false)
+    @JoinColumn(name = "client_id", insertable=true, updatable=false, nullable=false)
     private Client client;
     
     @OneToMany(cascade = CascadeType.ALL,
@@ -47,8 +47,6 @@ public class Request {
 			targetEntity = DetailsRequests.class,
             mappedBy = "request")
     private Set<DetailsRequests> detailsRequests = new HashSet<>();
-    
-    
     
 	public Long getRequest_billNumber() {
 		return request_billNumber;
