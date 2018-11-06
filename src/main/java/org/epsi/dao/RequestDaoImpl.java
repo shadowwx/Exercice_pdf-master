@@ -35,12 +35,13 @@ public class RequestDaoImpl implements RequestDao {
 		return lTypedQuery.getResultList();
 	}
 	
-	public void createRequest(Request request) {
+	public void createRequest(final Request request) {
 		entityManager.persist(request);   
 	}
 	
-	public void removeRequest(Request request) {
-		entityManager.persist(request);   
+	public void removeRequest(final Request request) {
+		final Request lrequest = entityManager.getReference(Request.class, request.getRequest_billNumber());
+		entityManager.remove(lrequest);
 	}
 	
 	@Transactional

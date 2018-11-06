@@ -31,4 +31,5 @@ public class RemoveListProductController {
         service.removeProduct(product_reference);;
         return display(pModel);
     }
+    
 }

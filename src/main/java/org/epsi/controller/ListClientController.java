@@ -22,7 +22,8 @@ public class ListClientController {
     public String display(ModelMap pModel) {
         final List<Client> lListClient = service.getClients();
         pModel.addAttribute("listClient", lListClient);
+
+    	
         return "listClient";
-    }
-    
+    }   
 }

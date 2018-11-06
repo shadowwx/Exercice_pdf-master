@@ -30,6 +30,8 @@ public class ProductServiceImpl implements ProductService {
         lProduct.setNumberStock(Integer.valueOf(creationFromProduct.getNumberStock()));
         lProduct.setPriceUnit(Float.valueOf(creationFromProduct.getPriceUnit()));
         lProduct.setCommentary(creationFromProduct.getCommentary());
+        
+        
 
         return lProduct;
     }
@@ -54,7 +56,8 @@ public class ProductServiceImpl implements ProductService {
     	boolean isTypeOk = creationFromProduct.getType() != null && !creationFromProduct.getType().isEmpty();
     	boolean isNumberStockOk = creationFromProduct.getNumberStock() != null && !creationFromProduct.getNumberStock().isEmpty();
     	boolean isPriceUnitOk = creationFromProduct.getPriceUnit() != null && !creationFromProduct.getPriceUnit().isEmpty();
-    	
+//    	boolean isTvaOk = creationFromProduct.getTva_id().getClass().getName() != null && !creationFromProduct.getTva_id().getClass().getName().isEmpty();
+//    	
     	boolean result = isNameOk && isBrandOk && isTypeOk && isNumberStockOk && isPriceUnitOk;
     	return result;
     }

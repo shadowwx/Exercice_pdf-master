@@ -24,6 +24,41 @@
     		</div>
     	</div>
     </div>
+        <table border="1" class="tablePlus">
+            <thead>
+                <tr>
+                    <th><spring:message code="colonne.request_billNumber"/></th>
+                    <th><spring:message code="colonne.dateCreation"/></th>
+                    <th><spring:message code="colonne.confirmation"/></th>
+                    <th><spring:message code="colonne.client"/></th>           
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${listRequest}" var="request">
+                    <tr>
+                        <td id="center"><c:out value="${request.request_billNumber}"/></td>
+                        <td><c:out value="${request.dateCreation}"/></td>
+                        <td id="center"><c:choose>
+						    <c:when test="${request.confirmation == true}">
+						       <spring:message code="choose.oui"/>
+						    </c:when>
+						    <c:otherwise>
+						       <p><strong><font color="red"><spring:message code="choose.non"/></font></strong></p>
+						    </c:otherwise>
+						</c:choose></td>
+                        <td><c:out value="${request.client.name}"/></td>
+                    	<td>
+                            <c:url value="/removeRequest" var="url">
+                                <c:param name="request_billNumber" value="${request.request_billNumber}"/>
+                            </c:url>
+                            <a href="${url}">
+                                <spring:message code="suppression.supprimer.libelle" />
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
 	<div class="p-5"></div>
 	<div class="col-xs-6">
 	    <div class="row" style="text-align: center;">

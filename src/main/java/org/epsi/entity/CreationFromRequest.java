@@ -8,16 +8,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class CreationFromRequest {
 
+	
 	private Long request_billNumber;
     
 	private String dateCreation;
     
+	@NotEmpty(message="{NotEmpty.edit.dateDelivery}")
 	private String dateDelivery;
 	
 	private boolean confirmation;
 
+	@NotEmpty(message="{NotEmpty.edit.deliveryPlace}")
 	private String deliveryPlace;
     
     private Long clientId;

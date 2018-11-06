@@ -76,6 +76,8 @@
                     <th><spring:message code="colonne.billingPlace"/></th>
                     <th><spring:message code="colonne.mail"/></th>
                     <th><spring:message code="colonne.phone"/></th>
+                    <th><spring:message code="colonne.nbCommandes"/></th>
+                    <th colspan="2"><spring:message code="colonne.action"/></th>   
                 </tr>
             </thead>
             <tbody>
@@ -85,7 +87,8 @@
                         <td><c:out value="${client.firstName}"/></td>
                         <td><c:out value="${client.billingPlace}"/></td>
                         <td><c:out value="${client.mail}"/></td>
-                        <td><c:out value="${client.phone}"/></td>
+                        <td><c:out value="${client.phone}"/></td>                                        
+                        <td><c:out value="${client.nbFactures}"/></td>
 	                    <td>		                    
 		                    <a href="downloadPDF/${client.client_id}">
 		                        <img alt="Commandes" title="Commandes" src="<c:url value="/resources/images/img_order.png" />" style="width: 50px;" >
@@ -100,5 +103,6 @@
                 </c:forEach>
             </tbody>
         </table>
+        <div class="p-5"></div>
     </body>
 </html>

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.epsi.entity.Product;
+import org.epsi.entity.Tva;
 import org.epsi.entity.CreationFromProduct;
 import org.epsi.service.ProductService;
+import org.epsi.service.TvaService;
 
 @Controller
 public class CreateListProductController {
@@ -22,9 +24,14 @@ public class CreateListProductController {
     @Autowired
     private ProductService service;
     
+    @Autowired
+    private TvaService tvaService;
+    
     //Affiche la page avec la liste des produits et un formulaire pour créer un nouveau produit
     @RequestMapping(value="/displayCreationProduct", method = RequestMethod.GET)
     public String display(final ModelMap pModel) {
+    	final List<Tva> tvaList = tvaService.getTva();
+        pModel.addAttribute("tvaList", tvaList);
         final List<Product> lListProduct = service.getProducts();
         pModel.addAttribute("listProduct", lListProduct);
         if (pModel.get("creationProduct") == null) {

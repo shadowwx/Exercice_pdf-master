@@ -54,6 +54,11 @@
 	            <form:input path="commentary"/>
 	            <b><i><form:errors path="commentary" cssclass="error"/></i></b><br>
 	            
+	            <spring:message code="creation.elementproducts.libelle.tva" />
+	            <input type="text" id="clientName"/>
+	            <form:select path="tva" itemValue="tva_id" itemLabel="taux" items="${tva}"/>
+	            <b><i><form:errors path="tva" cssclass="error"/></i></b><br>
+	            
 	            <div class="p-4"></div>
 	            <input type="submit"/>
 	            <div class="p-4"></div>

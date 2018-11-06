@@ -14,9 +14,9 @@
     
     <h1><center>Projet PDF</center></h1>
     <div class="center">
-        <center><p class="titleHome">Bonjour et bienvenue sur le projet PDF-CSV de Florian.</p></center>
-        <center><p class="titleHome">Le projet à était réaliser à l'aide des ressources CGI(Entreprise) et EPSI(Formation)</p></center>
-        <center><p class="titleHome">Si vous désirez vous servir de l'application, cliquez sur le bouton !</p></center>
+        <center><p class="">Bonjour et bienvenue sur le projet PDF-CSV de Florian.</p></center>
+        <center><p class="">Le projet à était réaliser à l'aide des ressources CGI(Entreprise) et EPSI(Formation)</p></center>
+        <center><p class="">Si vous désirez vous servir de l'application, cliquez sur le bouton !</p></center>
         <center><div class="logoHome">
         	<p class="titleHome"><c:url value="/menu" var="url" /><a href="${url}"><img title="Le projet" alt="Menu" src="<c:url value="/resources/images/img_api.png" />" style="width: 200px;" ></a></p>
    		</div></center>

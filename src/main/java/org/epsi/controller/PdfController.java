@@ -1,13 +1,10 @@
 package org.epsi.controller;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
@@ -87,7 +84,7 @@ public class PdfController {
     	} else {
         	System.out.println("Error client null");
     	}  		
-        return new ModelAndView("listRequest");
+    	return new ModelAndView("listRequest");
     }
 	
 	//Génére un PDF de la facture du client
@@ -213,6 +210,10 @@ public class PdfController {
 			    img.setAlignment(Image.ALIGN_CENTER);
 			    
 			    document.add(img);
+			    
+			    Paragraph textIndice = new Paragraph("Logo facture", indice);
+				textIndice.setAlignment(Element.ALIGN_CENTER);
+				document.add(textIndice);
 			} else {
 				System.out.println(wrong.toString());
 			    Image img = Image.getInstance(wrong);
@@ -220,15 +221,15 @@ public class PdfController {
 			    img.setAlignment(Image.ALIGN_CENTER);
 			    
 			    document.add(img);
+			    
+			    Paragraph textIndice = new Paragraph("Logo devis", indice);
+				textIndice.setAlignment(Element.ALIGN_CENTER);
+				document.add(textIndice);
 			}
 		} else {
 			System.out.println("L'image de validation ou refus n'est plus disponible");
 		}
-		
-		//Text précisant le logo
-		Paragraph textIndice = new Paragraph("Validation du client", indice);
-		textIndice.setAlignment(Element.ALIGN_CENTER);
-		document.add(textIndice);
+
 		
 	    document.close();	
 

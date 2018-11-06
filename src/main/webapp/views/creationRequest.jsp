@@ -26,7 +26,6 @@
 			} );
 		</script>
 		<script>
-			
 				var clientsData = [];
 				$(document).ready(function(){
 					$.ajax("/projet-pdf-csv/jsonApi/clients").success(function(data){
@@ -71,28 +70,29 @@
         <form:form method="post" modelAttribute="creationRequest" action="creationRequest">
 
 			<spring:message code="creation.elementrequests.libelle.client" />
-
 			<input type="text" id="clientName"/>
-			<form:input id="clientId" path="clientId" cssStyle="display:none"/>
+			<form:input id="clientId" path="clientId" cssStyle="display:none"/><br />
+			<b><i><form:errors path="clientId" cssclass="error"/></i></b><br>
 			
-            <spring:message code="creation.elementrequests.libelle.dateDelivery" /> 
+           	<spring:message code="creation.elementrequests.libelle.dateDelivery" />
             <form:input type="text" id="datepicker" path="dateDelivery" alt="calendrier" /><br />
+            <b><i><form:errors path="dateDelivery" cssclass="error"/></i></b><br>
             
             <spring:message code="creation.elementrequests.libelle.deliveryPlace" />
-            <form:input path="deliveryPlace"/>
+            <form:input path="deliveryPlace"/><br />
             <b><i><form:errors path="deliveryPlace" cssclass="error"/></i></b><br>
             
-            <input type="radio" name="confirmation" value=true > Oui
-            <input type="radio" name="confirmation" value=false checked> Non
-            <b><i><form:errors path="confirmation" cssclass="error"/></i></b><br>
-
+            <input type="radio" name="confirmation" value=true > Facture
+            <input type="radio" name="confirmation" value=false checked> Devis
+			<b><i><form:errors path="confirmation" cssclass="error"/></i></b><br>
+			
 			<br />
-	
+
 			<c:forEach items='${productList}' var="product" varStatus="status">
 				
 				<div>
 					<input name="products[${status.count}].name" type="text" value="${product.name}"/>
-					<input name="products[${status.count}].weight" value="${product.weight}"/>
+					<input name="products[${status.count}].numberStock" value="${product.numberStock}"/>
 				</div>			
 			
 			</c:forEach>

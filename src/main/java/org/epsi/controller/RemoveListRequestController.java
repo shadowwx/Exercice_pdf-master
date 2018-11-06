@@ -25,7 +25,7 @@ public class RemoveListRequestController {
         return "removeRequest";
     }
 
-  //Delete en BDD la commande choisi
+    //Delete en BDD la commande choisi
     @RequestMapping(value="/removeRequest", method = RequestMethod.GET)
     public String remove(@RequestParam(value="request_billNumber") final Long request_billNumber, final ModelMap pModel) {
     	requestService.persistRemoveRequest(request_billNumber);  

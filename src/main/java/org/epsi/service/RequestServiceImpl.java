@@ -4,7 +4,6 @@ import java.util.List;
 //import java.util.Optional;
 
 import org.epsi.dao.RequestDao;
-import org.epsi.entity.CreationFromRequest;
 import org.epsi.entity.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +49,7 @@ public class RequestServiceImpl implements RequestService {
     }
 	
 	@Transactional
-	public void persistRemoveRequest(Long request_billNumber) {
+	public void persistRemoveRequest(final Long request_billNumber) {
 		final Request lRequest = new Request();
 		lRequest.setRequest_billNumber(request_billNumber);
         

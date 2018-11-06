@@ -71,10 +71,10 @@ public class CreateListRequestController {
     	logger.info("Creation d'une requete : " + creationFormRequest.toString());
     	logger.info(client != null ? client.toString() : "client null pour la création de la requête pour l'id " + creationFormRequest.getClientId());
     	request.setClient(client);
-    	request.setConfirmation(creationFormRequest.isConfirmation());
     	request.setDateCreation(creationFormRequest.getDateCreation());
     	request.setDateDelivery(creationFormRequest.getDateDelivery());
     	request.setDeliveryPlace(creationFormRequest.getDeliveryPlace());
+    	request.setConfirmation(creationFormRequest.isConfirmation());
     	request.setDetailsRequests(creationFormRequest.getDetailsRequests());
     	request.setRequest_billNumber(creationFormRequest.getRequest_billNumber());
     	logger.info(request.toString());

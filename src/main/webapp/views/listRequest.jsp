@@ -75,7 +75,8 @@
                     <th><spring:message code="colonne.request_billNumber"/></th>
                     <th><spring:message code="colonne.dateCreation"/></th>
                     <th><spring:message code="colonne.confirmation"/></th>
-                    <th><spring:message code="colonne.client"/></th>           
+                    <th><spring:message code="colonne.client"/></th>
+                    <th colspan="2"><spring:message code="colonne.action"/></th>     
                 </tr>
             </thead>
             <tbody>
@@ -92,22 +93,23 @@
 						    </c:otherwise>
 						</c:choose></td>
                         <td><c:out value="${request.client.name}"/></td>
-                        <td>
-		                    <c:url value="/Facture-Pdf" var="url">
-		                        <c:param name="request_billNumber" value="${request.request_billNumber}"/>
-		                    </c:url>
-		                    <a href="${url}">
-		                        <img alt="PDF" title="Télécharger PDF" src="<c:url value="/resources/images/img_pdf.png" />" style="width: 50px;" >
-		                    </a>
-		                </td>
-		                <td>		                    
-		                    <a href="displayEditRequest/${request.request_billNumber}">
-		                        <img alt="Modifier" title="Modifier" src="<c:url value="/resources/images/img_edit.png" />" style="width: 50px;" >
-		                    </a>
-		                </td>
+	                        <td id="center">
+			                    <c:url value="/Facture-Pdf" var="url">			                    
+				                        <c:param name="request_billNumber" value="${request.request_billNumber}"/>
+			                    </c:url>
+			                    <a href="${url}">
+			                        <img alt="PDF" title="Télécharger PDF" src="<c:url value="/resources/images/img_pdf.png" />" style="width: 50px;" >
+			                    </a>
+			                </td>
+			                <td id="center">		                    
+			                    <a href="displayEditRequest/${request.request_billNumber}">
+			                        <img alt="Modifier" title="Modifier" src="<c:url value="/resources/images/img_edit.png" />" style="width: 50px;" >
+			                    </a>
+			                </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
+        <div class="p-5"></div>
     </body>
 </html>

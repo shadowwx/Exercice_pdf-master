@@ -42,6 +42,8 @@ public class Client {
 			targetEntity = Request.class,
             mappedBy = "client")
     private Set<Request> factures = new HashSet<>();
+	
+	private int nbFactures;
 
 	public Long getClient_id() {
 		return client_id;
@@ -84,9 +86,14 @@ public class Client {
 		return factures;
 	}
 	
-	public Client() {	
+	public int getNbFactures() {
+		nbFactures = factures.size();
+		return nbFactures;
 	}
 
+	public Client() {
+	}
+	
 	public Client(String name, String firstName, String billingPlace, String mail, String phone) {
 		super();
 		this.name = name;
@@ -102,5 +109,6 @@ public class Client {
 		return "Client [client_id=" + client_id + ", name=" + name + ", firstName=" + firstName + ", billingPlace="
 				+ billingPlace + ", mail=" + mail + ", phone=" + phone + ", factures=" + factures + "]";
 	}
+
 
 }

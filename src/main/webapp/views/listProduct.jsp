@@ -77,6 +77,7 @@
                     <th><spring:message code="colonne.type"/></th>
                     <th><spring:message code="colonne.numberStock"/></th>
                     <th><spring:message code="colonne.priceUnit"/></th>
+                    <th colspan="2"><spring:message code="colonne.action"/></th>   
                 </tr>
             </thead>
             <tbody>
@@ -97,5 +98,6 @@
                 </c:forEach>
             </tbody>
         </table>
+        <div class="p-5"></div>
     </body>
 </html>

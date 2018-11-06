@@ -44,6 +44,7 @@ public class ClientDaoImpl implements ClientDao {
 		entityManager.remove(lClient);
 	}
 	
+
 	//Modifie en base les champ set
 	@Transactional
 	public void editClient(final Client client) {

@@ -32,13 +32,7 @@ public class CreationFromProduct {
     
     private String commentary;
     
-	public Long getReference_product() {
-		return reference_product;
-	}
-
-	public void setReference_product(Long reference_product) {
-		this.reference_product = reference_product;
-	}
+    private Long Tva;
 	
 	public String getName() {
 		return name;
@@ -95,5 +89,21 @@ public class CreationFromProduct {
 	public void setCommentary(String commentary) {
 		this.commentary = commentary;
 	}
-	
+
+	public Long getReference_product() {
+		return reference_product;
+	}
+
+	public void setReference_product(Long reference_product) {
+		this.reference_product = reference_product;
+	}
+
+	public Long getTva() {
+		return Tva;
+	}
+
+	public void setTva(Long tva) {
+		Tva = tva;
+	}
+
 }
